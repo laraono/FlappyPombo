@@ -1,4 +1,4 @@
-# Emojindle
+# trabalhoPratico
 
 
 
@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://gitlab.com/trabalhopraticoweb/emojindle.git
+git remote add origin https://gitlab.com/ds122-2023-2-t-grr20230939/trabalhopratico.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://gitlab.com/trabalhopraticoweb/emojindle/-/settings/integrations)
+- [ ] [Set up project integrations](https://gitlab.com/ds122-2023-2-t-grr20230939/trabalhopratico/-/settings/integrations)
 
 ## Collaborate with your team
 
