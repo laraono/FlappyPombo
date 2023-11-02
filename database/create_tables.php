@@ -44,6 +44,7 @@
     id SERIAL NOT NULL,
     datahora DATETIME NOT NULL,
     pontuacao INT NOT NULL,
+    tempoj INT NOT NULL,
     apelidou VARCHAR(30) NOT NULL,
     FOREIGN KEY (apelidou) REFERENCES Usuario(apelido)
   )";
