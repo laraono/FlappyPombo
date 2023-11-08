@@ -1,3 +1,8 @@
+<?php 
+require "force_authenticate.php";
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
