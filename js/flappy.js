@@ -59,11 +59,6 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keydown', jump);
 document.addEventListener('keyup', keyUp);
 
-// Função para alterar a imagem do pássaro
-function changeBirdImage(newImagePath) {
-  let birdImage = bird.querySelector("img");
-  birdImage.src = newImagePath;
-}
 // Função para aumentar a velocidade em incrementos
 function increaseSpeed() {
   if (speed < 10) {
@@ -141,10 +136,24 @@ function keyUp(event) {
   }
 }
 
+// Função para parar a animação e mostrar a imagem fixa
+function mostrarImagemFixa() {
+  // Adicione uma classe para parar a animação
+  bird.classList.remove("animated");
+  bird.querySelector("img").src = "assets/img/pomboMachucado.png";
+}
+
+// Função para retomar a animação
+function retomarAnimacao() {
+  // Remova a classe que parou a animação
+  bird.classList.add("animated");
+  bird.querySelector("img").src = "../assets/img/pombo.png";
+}
+
 // Função para iniciar o jogo
 function startGame() {
   if (!gameIsRunning) {
-    changeBirdImage(normalBird); // Altera a imagem do pássaro para o normal
+    retomarAnimacao();
     gameIsRunning = true;
     lastTimestamp = null;
     requestAnimationFrame(updateGameArea);
@@ -169,7 +178,7 @@ function startGame() {
 
 // Função para encerrar o jogo
 function endGame() {
-  changeBirdImage(damagedBird);
+  mostrarImagemFixa(); // Passaro morto
   gameIsRunning = false;
   // Mostra a pontuação e a highScore do jogador
   endText.textContent = `Fim de jogo! Sua pontuação: ${score} - Highscore: ${highScore}. Pressione ESPAÇO para jogar novamente.`;

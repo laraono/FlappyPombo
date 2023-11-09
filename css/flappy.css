@@ -75,11 +75,27 @@
     transform: translate(-50%, -50%);
     z-index: 2; /* Adicione o z-index para controlar a sobreposição */
   }
-  
+
   #bird img {
     width: 100%;
     height: 100%;
   }
+
+  .animated {
+    width: 100%;
+    height: 100%;
+    animation: birdFlyAnimation 0.5s infinite linear;
+  }
+  
+  @keyframes birdFlyAnimation {
+    0% {
+      content: url('../assets/img/pombo.png');
+    }
+    100% {
+      content: url('../assets/img/pombo2.png');
+    }
+  }  
+  
   
   .obstacle {
     width: 50px; /* Largura do terceiro tipo de obstáculo */

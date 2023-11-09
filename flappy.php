@@ -28,8 +28,8 @@ require "force_authenticate.php";
             <img src="assets/img/card.png" alt="Carta" class="card-img" style="width: 40px;">
             <!-- UI Fim -->
             
-            <div id="bird"> <!-- Pombo -->
-                <img src="assets/img/pombo.png" alt="Bird Image">
+            <div id="bird" class="animated"> <!-- Pombo -->
+                <img src="assets/img/pomboMachucado.png" alt="Bird Image">
             </div>
             <div id="startText">Pressione ESPAÇO para começar. Controles: Espaço - Saltar, F - Atirar.</div>
             <div id="endText"></div>
