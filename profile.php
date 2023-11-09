@@ -1,5 +1,24 @@
 <?php
         require "nav.php";
+        require_once "funcoes.php";
+
+        if(isset($_POST["ponto"]) && isset($_POST["recorde"])) {
+            insertPontos($userName, $_POST["ponto"], $_POST["recorde"]);
+        }
+
+        if(isset($_POST["ponto"]) && isset($_POST["tempo"])) {
+            inserirPartida($userName, $_POST["ponto"], $_POST["tempo"]);
+        }
+
+      /*  historicoPartidas($userName);
+        rankingGeral($userName, $liga);
+
+        rankingGeral($userName, "");
+
+        rankingSemanal($userName, $liga);
+        rankingSemanal($userName, "");
+
+        rankingHighScore($userName, "");*/
     ?>
 <!DOCTYPE html>
 <!DOCTYPE html>

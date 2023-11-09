@@ -31,6 +31,17 @@ let score = 0;
 let highScore = 0;
 let oldHighScore = 0;
 
+$.ajax({    
+  type: "POST",
+  url: "json.php",             
+  dataType: "json",                  
+  success: function(data){  
+    highScore = oldHighScore = data;  
+    highScoreElement.textContent = "Highscore: " + data;
+    console.log(data);
+  }
+});
+
 // Variável de controle para rastrear se a tecla Espaço foi pressionada
 let spaceKeyPressed = false;
 
@@ -183,6 +194,16 @@ function endGame() {
   // Mostra a pontuação e a highScore do jogador
   endText.textContent = `Fim de jogo! Sua pontuação: ${score} - Highscore: ${highScore}. Pressione ESPAÇO para jogar novamente.`;
   endText.style.display = 'block';
+
+  $.ajax({
+    type: 'POST',
+    url: 'profile.php',
+    data: { ponto: score, recorde: highScore, tempo: timeInSeconds },
+    success: function(response) {
+      console.log('oi');
+    }
+  });
+
 
   clearInterval(timerInterval);
   timeInSeconds = 0;

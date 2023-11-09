@@ -4,8 +4,10 @@
   $sql = "CREATE TABLE Usuario (
     apelido VARCHAR(20) NOT NULL PRIMARY KEY,
     senha VARCHAR(20) NOT NULL,
-    foto INT AUTO_INCREMENT,
-    pontot INT
+    foto INT,
+    pontot INT,
+    pontos INT,
+    highScore INT
   )";
 
   if (mysqli_query($conn, $sql)) {
@@ -17,7 +19,7 @@
   $sql = "CREATE TABLE Liga (
     nome VARCHAR(30) NOT NULL PRIMARY KEY,
     senha VARCHAR(20) NOT NULL,
-    foto INT AUTO_INCREMENT
+    foto INT
   )";
 
   if (mysqli_query($conn, $sql)) {
@@ -41,10 +43,12 @@
 
   $sql = "CREATE TABLE Partida (
     id INT AUTO_INCREMENT NOT NULL,
-    datahora DATETIME NOT NULL,
+    data DATE NOT NULL,
+    hora TIME NOT NULL,
     pontuacao INT NOT NULL,
-    tempoj INT NOT NULL,
+    tempoj TIME NOT NULL,
     apelidou VARCHAR(30) NOT NULL,
+    PRIMARY KEY(id),
     FOREIGN KEY (apelidou) REFERENCES Usuario(apelido)
   )";
 

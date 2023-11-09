@@ -1,8 +1,8 @@
 <?php
 
-  require "autheticate.php";
+  require "funcoes.php";
 
-  if(!$login){
+  if($userName==NULL){
     die("Você não tem permissão para acessar essa página.");
   }
 

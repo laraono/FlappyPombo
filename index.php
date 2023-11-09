@@ -1,4 +1,4 @@
-    <?php
+<?php
         require "nav.php";
     ?>
     <!DOCTYPE html>
@@ -17,7 +17,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-auto">
-            <a class="btn btn-success" href=" <?php if ($login): ?>         
+            <a class="btn btn-success" href=" <?php if ($userName!=NULL): ?>         
             flappy.php
             <?php else: ?> 
             login.php    

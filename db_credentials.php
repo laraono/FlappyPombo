@@ -1,7 +1,7 @@
 <?php
-  $servername = "localhost";//"localhost";
+  $servername = "localhost";
   $username = "root";
-  $db_password = "";
-  $dbname = "web1_2019_1";
-  $table_users = "usuario";
+  $password = "";
+  $dbname = "flappy_bird";
+
 ?>
