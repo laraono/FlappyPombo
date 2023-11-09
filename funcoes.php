@@ -99,10 +99,8 @@
                         if (mysqli_num_rows($result) > 0) {
                             $senhaLiga = mysqli_fetch_assoc($result);
                             $check = $senhaLiga["senha"];
-                            echo "ola";
 
                             if($password==$check) {
-                                echo "oi";
                                 $sql = "INSERT INTO participantes (apelidou, nomel) VALUES ('$player', '$nomeLiga');";
                 
                                 if(mysqli_query($conn, $sql)){
@@ -229,8 +227,9 @@
             
             $result=mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
+                echo "<tr> <th> Data </th> <th> Hora </th> <th>Pontuação </th> <th> Tempo de jogo</th> </tr>";
                 while($row = $result->fetch_assoc()) {
-                  echo "Data: " . $row["data"]. " - Pontuação: " . $row["pontuacao"]. " - Tempo Jogado: " . $row["tempoj"]. "<br>";
+                  echo "<tr> <th>" . $row["data"]. "</th> <th> " . $row["hora"]. "</th> <th> " . $row["pontuacao"]. "</th> <th> " . $row["tempoj"]. "</th> </tr>";
                 }
             } else {
                 $error_msg = mysqli_error($conn);
@@ -251,7 +250,7 @@
                 $result=mysqli_query($conn, $sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                    echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["pontos"]. " - Liga: " . $row["nomel"]. "<br>";
+                        echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["pontos"]. " - Liga: " . $row["nomel"]. "<br>";
                     }
                 } else {
                     $error_msg = mysqli_error($conn);
@@ -264,7 +263,7 @@
                 $result=mysqli_query($conn, $sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                    echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["pontos"]. "<br>";
+                        echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["pontos"]. "<br>";
                     }
                 } else {
                     $error_msg = mysqli_error($conn);
@@ -286,7 +285,7 @@
                 $result=mysqli_query($conn, $sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                    echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["pontot"]. " - Liga: " . $row["nomel"]. "<br>";
+                        echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["pontot"]. " - Liga: " . $row["nomel"]. "<br>";
                     }
                 } else {
                     $error_msg = mysqli_error($conn);
@@ -299,7 +298,7 @@
                 $result=mysqli_query($conn, $sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                    echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["pontot"]. "<br>";
+                        echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["pontot"]. "<br>";
                     }
                 } else {
                     $error_msg = mysqli_error($conn);
@@ -320,8 +319,9 @@
                 
                 $result=mysqli_query($conn, $sql);
                 if ($result->num_rows > 0) {
+                    echo "<tr> <th> Jogador <th/> <th> Pontuação <th/> <th> Liga <th/> </tr>";
                     while($row = $result->fetch_assoc()) {
-                    echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["highScore"]. " - Liga: " . $row["nomel"]. "<br>";
+                        echo "<tr> <th> " .  $row["apelido"]. " </th> <th> " . $row["highScore"] . " </th> <th> " . $row["nomel"]. "</th> </tr>";
                     }
                 } else {
                     $error_msg = mysqli_error($conn);
@@ -333,8 +333,9 @@
                 
                 $result=mysqli_query($conn, $sql);
                 if ($result->num_rows > 0) {
+                    echo "<tr> <th> Jogador <th/> <th> Pontuação <th/></tr>";
                     while($row = $result->fetch_assoc()) {
-                    echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["highScore"]. "<br>";
+                        echo "<tr> <th> " . $row["apelido"]. " </th> <th> " . $row["highScore"]. " </th> </tr>";
                     }
                 } else {
                     $error_msg = mysqli_error($conn);
