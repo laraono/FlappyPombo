@@ -21,24 +21,16 @@ loginLiga($userName, $liga);
 
 <form action="liga.php" method="post">
   
-  
+<p>
+    Quer cadastrar uma <a href="register.php">liga</a> ?.
+  </p>
 
-<label for="selec">Você já tem uma liga?</label>
-<input type="radio" name="sliga" id="1" value="1"> Sim <br>
-<input type="radio" name="sliga" id="0" value="0"> Não
+<p> Fazer login na liga de interesse </p>
 <div id="Liga">
         <div id="tem">
         <label for="loginliga">Nome da liga </label>
             <input type="text" name="loginliga" id="loginliga">
             <br>
-        <label for="codliga">Código da liga </label>
-            <input type="password" name="codliga" id="codliga">
-            <br>
-        </div>
-        <div id="ntem">
-        <label for="nomeliga">Nome da liga </label>
-            <input type="text" name="nomeliga" id="nomeliga">
-          <br>
         <label for="codliga">Código da liga </label>
             <input type="password" name="codliga" id="codliga">
             <br>
@@ -53,22 +45,5 @@ loginLiga($userName, $liga);
 </ul>
 </p>
 
-<script>
-       var ntem = document.getElementById("ntem");
-        var tem = document.getElementById("tem");
-        tem.style.display = "none";
-        function getResponse() {
-        if(document.getElementById("1").checked) {
-            tem.style.display = "block";
-            ntem.style.display = "none";
-        } else if(document.getElementById("0").checked) {
-            ntem.style.display = "block";
-            tem.style.display = "none";
-        }
-    }
-
-    document.getElementById("1").addEventListener("click", getResponse);
-    document.getElementById("0").addEventListener("click", getResponse);
-</script>
 </body>
 </html>

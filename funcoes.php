@@ -148,6 +148,7 @@
                     if(mysqli_query($conn, $sql)){
                         $success = true;
                         $error = false;
+                        
                        // header("Location: " . dirname($_SERVER['SCRIPT_NAME']) . "/liga.php");
                     }
                     else {
