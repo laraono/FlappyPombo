@@ -60,12 +60,9 @@
                         } else {
                             $error_msg = "Você não é cadastrado";
                             $error = true;
-                        }
-                        
-                        
-
+                        }   
                     } else {
-                        $error_msg = mysqli_error($conn);
+                        $error_msg = "Você não é cadastrado";
                         $error = true;
                     }
     
@@ -117,6 +114,9 @@
                                 $error_msg = "Senha incorreta.";
                                 $error=true;
                             }
+                        } else {
+                            $error = true;
+                            $error_msg = "A liga não existe";
                         }
                     } else {
                         $error_msg = mysqli_error($conn);
@@ -133,35 +133,44 @@
     function cadastroLiga($player, $league) {
         global $error, $error_msg, $success;
         if($league==NULL && $_SERVER["REQUEST_METHOD"] == "POST") {
-            if ($player!=NULL) {
-                $conn = connect_db();  
+            if(isset($_POST["nomeliga"])) {    
+                if ($player!=NULL) {
+                    $conn = connect_db();  
 
-                $nomeLiga = mysqli_real_escape_string($conn,$_POST["nomeliga"]);
-                $password = mysqli_real_escape_string($conn,$_POST["codliga"]);
-               // $check = mysqli_real_escape_string($conn,$_POST["check"]);
-                
-              //  if($password==$check) {
-                  //  $password = md5($password);
+                    $nomeLiga = mysqli_real_escape_string($conn,$_POST["nomeliga"]);
+                    $password = mysqli_real_escape_string($conn,$_POST["codliga"]);
+                // $check = mysqli_real_escape_string($conn,$_POST["check"]);
+                    
+                //  if($password==$check) {
+                    //  $password = md5($password);
+                    $sql = "SELECT nome FROM liga WHERE nome = '$nomeLiga';";
+                    $result = mysqli_query($conn, $sql);
 
-                    $sql = "INSERT INTO liga(senha, nome) VALUES('$password', '$nomeLiga');";
+                    if (mysqli_num_rows($result) == 0) {
 
-                    if(mysqli_query($conn, $sql)){
-                        $success = true;
-                        $error = false;
-                        
-                       // header("Location: " . dirname($_SERVER['SCRIPT_NAME']) . "/liga.php");
-                    }
-                    else {
-                        $error_msg = mysqli_error($conn);
+                        $sql = "INSERT INTO liga(senha, nome) VALUES('$password', '$nomeLiga');";
+
+                        if(mysqli_query($conn, $sql)){
+                            $success = true;
+                            $error = false;
+                            
+                        // header("Location: " . dirname($_SERVER['SCRIPT_NAME']) . "/liga.php");
+                        }
+                        else {
+                            $error_msg = mysqli_error($conn);
+                            $error = true;
+                        }
+                    } else {
                         $error = true;
+                        $error_msg = "Liga já existe";
                     }
-
-              /*  } else {
-                    $error_msg = "Senha não confere com a confirmação.";
-                    $error=true;
-                } */        
-            } else {
-                $error_msg = "Você não está logado";
+                /*  } else {
+                        $error_msg = "Senha não confere com a confirmação.";
+                        $error=true;
+                    } */        
+                } else {
+                    $error_msg = "Você não está logado";
+                }
             }
         } else {
             $error_msg = "Você já possui uma liga.";
@@ -200,10 +209,11 @@
     }
 
     function sairLiga($player, $league) {
+        global $error, $error_msg, $sucess;
         if($player!=NULL) {
             if ($league!=NULL) {
                 $conn = connect_db();                 
-                $sql = "DELETE FROM participantes WHERE apelidou='$player' AND nomel='$league';";
+                $sql = "DELETE FROM Participantes WHERE apelidou='$player' AND nomel='$league';";
 
                 if(mysqli_query($conn, $sql)) {
                     $success = true;
@@ -214,9 +224,11 @@
                     $error = true;
                 }                         
             } else {
+                $error = true;
                 $error_msg = "Você não possui uma liga.";
             }
         } else {
+            $error = true;
             $error_msg = "Você não está logado";
         }
     }

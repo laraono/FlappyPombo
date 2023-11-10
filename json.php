@@ -7,11 +7,8 @@ if($userName!=NULL) {
         
         $result=mysqli_query($conn, $sql);
         if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc(); 
-            
-                echo json_encode($row["highScore"]);
-                
-            
+            $row = $result->fetch_assoc();       
+            echo json_encode($row["highScore"]);            
          }
     }
 ?>
