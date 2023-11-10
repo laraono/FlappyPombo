@@ -16,7 +16,7 @@ if ($userName!=NULL):
                     <?php if ($userName!=NULL): ?>
                         <li class="nav-item"><a class="nav-link" href="profile.php"><?php echo $user ?></a></li>
                         <?php if($liga==NULL): ?>
-                    <li class="nav-item"><a class="nav-link" href="register.php">Registrar-se</a></li>
+                    <li class="nav-item"><a class="nav-link" href="liga.php">Entrar na liga</a></li>
                 <?php endif;?>
                     <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
                 <?php else: ?>

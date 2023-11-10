@@ -83,12 +83,12 @@
         global $error, $error_msg, $success;
 
         if($league==NULL && $_SERVER["REQUEST_METHOD"] == "POST"){
-            if ($_POST["nomeliga"]!=NULL) {
+            if ($_POST["loginliga"]!=NULL) {
                 if($player!=NULL) {
 
                     $conn = connect_db();  
                     
-                    $nomeLiga = mysqli_real_escape_string($conn,$_POST["nomeliga"]);
+                    $nomeLiga = mysqli_real_escape_string($conn,$_POST["loginliga"]);
                     $password = mysqli_real_escape_string($conn,$_POST["codliga"]);
                     //$password = md5($password);
 
@@ -143,12 +143,12 @@
               //  if($password==$check) {
                   //  $password = md5($password);
 
-                    $sql = "INSERT INTO liga (nome, senha) VALUES ('$nomeLiga', '$password');";
+                    $sql = "INSERT INTO liga(senha, nome) VALUES('$password', '$nomeLiga');";
 
                     if(mysqli_query($conn, $sql)){
                         $success = true;
                         $error = false;
-                        header("Location: " . dirname($_SERVER['SCRIPT_NAME']) . "/liga.php");
+                       // header("Location: " . dirname($_SERVER['SCRIPT_NAME']) . "/liga.php");
                     }
                     else {
                         $error_msg = mysqli_error($conn);
