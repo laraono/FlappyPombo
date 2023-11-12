@@ -11,20 +11,17 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     </head>
     <body>
-    <section class="container">
-        <div class="row justify-content-center">
-        <h1 class="col-md-auto">Olá, <?php echo $user?>! Clique aqui para iniciar uma partida:</h1>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-md-auto">
-            <a class="btn btn-success" href=" <?php if ($userName!=NULL): ?>         
-            flappy.php
-            <?php else: ?> 
-            login.php    
-            <?php endif; ?>
-            ">Iniciar partida</a>
+    <section class="card">
+        <div class="card-body text-center my-3">
+        <h1>Olá, <?php echo $user?>! Clique aqui para iniciar uma partida:</h1>
+            <div>
+                <a class="btn btn-success" href=" <?php if ($userName!=NULL): ?>         
+                flappy.php
+                <?php else: ?> 
+                login.php    
+                <?php endif; ?>
+                ">Iniciar partida</a>    
             </div>
-    
         </div>
         
         

@@ -80,12 +80,12 @@
         global $error, $error_msg, $success;
 
         if($league==NULL && $_SERVER["REQUEST_METHOD"] == "POST"){
-            if ($_POST["loginliga"]!=NULL) {
+            if ($_POST["nomeliga"]!=NULL) {
                 if($player!=NULL) {
 
                     $conn = connect_db();  
                     
-                    $nomeLiga = mysqli_real_escape_string($conn,$_POST["loginliga"]);
+                    $nomeLiga = mysqli_real_escape_string($conn,$_POST["nomeliga"]);
                     $password = mysqli_real_escape_string($conn,$_POST["codliga"]);
                     //$password = md5($password);
 
