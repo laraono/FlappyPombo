@@ -240,10 +240,17 @@
             
             $result=mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
+                echo "<table class=\"my-5 mx-auto col-6\">";
                 echo "<tr> <th> Data </th> <th> Hora </th> <th>Pontuação </th> <th> Tempo de jogo</th> </tr>";
                 while($row = $result->fetch_assoc()) {
-                  echo "<tr> <th>" . $row["data"]. "</th> <th> " . $row["hora"]. "</th> <th> " . $row["pontuacao"]. "</th> <th> " . $row["tempoj"]. "</th> </tr>";
+                  echo "<tr>";
+                  echo "<td>" . $row["data"]. "</td>" ;
+                  echo "<td>" . $row["hora"]. "</td>";
+                  echo "<td>" . $row["pontuacao"]. "</td>" ;
+                  echo "<td>" . $row["tempoj"]. "</td>" ;
+                  echo "</tr>";
                 }
+                echo "</table>";
             } else {
                 $error_msg = mysqli_error($conn);
                 $error = true;
@@ -258,26 +265,46 @@
         if($player!=NULL) {
             if($league!=NULL) {
                 $conn = connect_db();                 
-                $sql = "SELECT apelido, pontos, nomel FROM usuario INNER JOIN participantes ON usuario.apelido = participantes.apelidou ORDER BY pontos DESC;";
+                $sql = "SELECT apelido, pontos, nomel FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) ORDER BY pontos DESC;";
                 
                 $result=mysqli_query($conn, $sql);
+
                 if ($result->num_rows > 0) {
+                    echo "<table class=\"my-5 mx-auto\">";
+                    echo "<tr class=\"ranking\"> <th></th><th> Jogador</th> <th>Pontuação </th> <th>Liga</th> </tr>";
+                    $count = 1;
                     while($row = $result->fetch_assoc()) {
-                        echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["pontos"]. " - Liga: " . $row["nomel"]. "<br>";
+                        echo "<tr>";
+                        echo "<td>".$count."</td>";
+                        echo "<td>". $row["apelido"]."</td>";
+                        echo "<td>".$row["pontos"]. " </td>";
+                        echo "<td>".$row["nomel"]. " </td>";    
+                        echo "</tr>";
+                        $count++;
                     }
+                    echo "</table>";
                 } else {
                     $error_msg = mysqli_error($conn);
                     $error = true;
                 }       
             } else {
                 $conn = connect_db();                 
-                $sql = "SELECT apelido, pontos FROM usuario ORDER BY pontos DESC;";
+                $sql = "SELECT apelido, pontos FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou AND participantes.nomel ='".$_SESSION["liga"]."') ORDER BY pontos DESC;";
                 
                 $result=mysqli_query($conn, $sql);
+                
                 if ($result->num_rows > 0) {
+                    echo "<table class=\"my-5 mx-auto\">";
+                    echo "<tr><th></th> <th> Jogador</th> <th>Pontuação </th> </tr>";
+                    $count = 1;
                     while($row = $result->fetch_assoc()) {
-                        echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["pontos"]. "<br>";
+                        echo "<tr>";
+                        echo "<td>".$count."</td>";
+                        echo "<td>". $row["apelido"]."</td>";
+                        echo "<td>".$row["pontos"]. " </td>";
+                        echo "</tr>";
                     }
+                    echo "</table>";
                 } else {
                     $error_msg = mysqli_error($conn);
                     $error = true;
@@ -293,26 +320,44 @@
         if($player!=NULL) {
             if($league!=NULL) {
                 $conn = connect_db();                 
-                $sql = "SELECT apelido, pontot, nomel FROM Usuario INNER JOIN Participantes ON Usuario.apelido = Participantes.apelidou ORDER BY pontot DESC;";
+                $sql = "SELECT apelido, pontot, nomel FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) ORDER BY pontot DESC;";
                 
                 $result=mysqli_query($conn, $sql);
                 if ($result->num_rows > 0) {
+                    echo "<table class=\"my-5 mx-auto\">";
+                    echo "<tr class=\"ranking\"> <th></th><th> Jogador</th> <th>Pontuação </th> <th>Liga</th> </tr>";
+                    $count = 1;
                     while($row = $result->fetch_assoc()) {
-                        echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["pontot"]. " - Liga: " . $row["nomel"]. "<br>";
+                        echo "<tr>";
+                        echo "<td>".$count."</td>";
+                        echo "<td>". $row["apelido"]."</td>";
+                        echo "<td>".$row["pontot"]. " </td>";
+                        echo "<td>".$row["nomel"]. " </td>";    
+                        echo "</tr>";
+                        $count++;
                     }
+                    echo "</table>";
                 } else {
                     $error_msg = mysqli_error($conn);
                     $error = true;
                 }       
             } else {
                 $conn = connect_db();                 
-                $sql = "SELECT apelido, pontot FROM usuario ORDER BY pontot DESC;";
+                $sql = "SELECT apelido, pontot FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou AND participantes.nomel ='".$_SESSION["liga"]."') ORDER BY pontot DESC;";
                 
                 $result=mysqli_query($conn, $sql);
                 if ($result->num_rows > 0) {
+                    echo "<table class=\"my-5 mx-auto \">";
+                    echo "<tr><th></th> <th> Jogador</th> <th>Pontuação </th> </tr>";
+                    $count = 1;
                     while($row = $result->fetch_assoc()) {
-                        echo "Jogador: " . $row["apelido"]. " - Pontuação: " . $row["pontot"]. "<br>";
+                        echo "<tr>";
+                        echo "<td>".$count."</td>";
+                        echo "<td>". $row["apelido"]."</td>";
+                        echo "<td>".$row["pontot"]. " </td>";
+                        echo "</tr>";
                     }
+                    echo "</table>";
                 } else {
                     $error_msg = mysqli_error($conn);
                     $error = true;
