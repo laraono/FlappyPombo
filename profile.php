@@ -26,12 +26,13 @@
 </head>
 <body>
 <div class="my-5 mx-auto col-6">
-    <!-- <h2><?php $_SESSION['user_name']; ?></h2>
-    <h6><?php $_SESSION['liga']; ?></h6> -->
+    <!-- <h2><?php echo $userName; ?></h2>
+    <h6><?php echo $liga; ?></h6> -->
     <a href="http://">Alterar liga</a> <br>
     <a href="http://">Sair da liga</a>
 </div>
 
+<?= $userName . " - " . $liga; ?>
 
 <h3  class="text-center my-5">Histórico de partidas</h3>
 <?php 
@@ -41,15 +42,15 @@
     <div class="row">
         <div class="col">
         <h3  class="text-center my-5">Ranking Semanal</h3>
-        <?php        rankingSemanal($userName, $liga) ?>
+        <?php        rankingSemanal("") ?>
         <h3  class="text-center my-5">Ranking Semanal da liga</h3>
-    <?php       rankingSemanal($userName, "")     ?>
+    <?php       rankingSemanal($liga)     ?>
         </div>
         <div class="col">
         <h3  class="text-center my-5">Ranking Geral</h3>
-        <?php         rankingGeral($userName, $liga); ?>
+        <?php         rankingGeral(""); ?>
         <h3  class="text-center my-5">Ranking Geral da liga</h3>
-    <?php         rankingGeral($userName, ""); ?>
+    <?php         rankingGeral($liga); ?>
         </div>
     </div>
 </div>
