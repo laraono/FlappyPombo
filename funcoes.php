@@ -41,14 +41,14 @@
                         if($user["apelido"]!=NULL) {
                             if ($user["senha"] == $password) {
                                 $sql2 = "SELECT nomel FROM Participantes WHERE apelidou = '$user_name';";
-                        $query = mysqli_query($conn, $sql2);
-        
-                        if($query){
-                            if (mysqli_num_rows($query) > 0) {
-                                $nomeLiga = mysqli_fetch_assoc($query);
-                                $_SESSION["liga"] = $nomeLiga["nomel"];
-                            }
-                        } 
+                                $query = mysqli_query($conn, $sql2);
+                
+                                if($query){
+                                    if (mysqli_num_rows($query) > 0) {
+                                        $nomeLiga = mysqli_fetch_assoc($query);
+                                        $_SESSION["liga"] = $nomeLiga["nomel"];
+                                    }
+                                } 
                                 $success=true;
                                 $_SESSION["user_name"] = $user["apelido"];
                                 header("Location: " . dirname($_SERVER['SCRIPT_NAME']) . "/index.php");
@@ -261,149 +261,134 @@
         }
     }
     
-    function rankingSemanal($player, $league) {
-        if($player!=NULL) {
-            if($league!=NULL) {
-                $conn = connect_db();                 
-                $sql = "SELECT apelido, pontos, nomel FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) ORDER BY pontos DESC;";
-                
-                $result=mysqli_query($conn, $sql);
-
-                if ($result->num_rows > 0) {
-                    echo "<table class=\"my-5 mx-auto col-12\">";
-                    echo "<tr class=\"ranking\"> <th></th><th> Jogador</th> <th>Pontuação </th> <th>Liga</th> </tr>";
-                    $count = 1;
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>".$count."</td>";
-                        echo "<td>". $row["apelido"]."</td>";
-                        echo "<td>".$row["pontos"]. " </td>";
-                        echo "<td>".$row["nomel"]. " </td>";    
-                        echo "</tr>";
-                        $count++;
-                    }
-                    echo "</table>";
-                } else {
-                    $error_msg = mysqli_error($conn);
-                    $error = true;
-                }       
-            } else {
-                $conn = connect_db();                 
-                $sql = "SELECT apelido, pontos FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou AND participantes.nomel ='".$_SESSION["liga"]."') ORDER BY pontos DESC;";
-                
-                $result=mysqli_query($conn, $sql);
-                
-                if ($result->num_rows > 0) {
-                    echo "<table class=\"my-5 mx-auto col-12\">";
-                    echo "<tr><th></th> <th> Jogador</th> <th>Pontuação </th> </tr>";
-                    $count = 1;
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>".$count."</td>";
-                        echo "<td>". $row["apelido"]."</td>";
-                        echo "<td>".$row["pontos"]. " </td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    $error_msg = mysqli_error($conn);
-                    $error = true;
-                }       
-            }                 
+    function rankingSemanal($league) {
+        if($league!=NULL) {
+            $conn = connect_db();                 
+            $sql = "SELECT apelido, pontos, nomel FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) WHERE nomel='$league' ORDER BY pontos DESC, apelido ASC;";
             
+            $result=mysqli_query($conn, $sql);
+
+            if ($result->num_rows > 0) {
+                echo "<table class=\"my-5 mx-auto\">";
+                echo "<tr class=\"ranking\"> <th></th><th> Jogador</th> <th>Pontuação </th> <th>Liga</th> </tr>";
+                $count = 1;
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>".$count."</td>";
+                    echo "<td>". $row["apelido"]."</td>";
+                    echo "<td>".$row["pontos"]. " </td>";
+                    echo "<td>".$row["nomel"]. " </td>";    
+                    echo "</tr>";
+                    $count++;
+                }
+                echo "</table>";
+            } else {
+                $error_msg = mysqli_error($conn);
+                $error = true;
+            }       
         } else {
-            $error_msg = "Você não está logado";
-        }
+            $conn = connect_db();                 
+            $sql = "SELECT apelido, pontos FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) ORDER BY pontos DESC, apelido ASC;";
+            
+            $result=mysqli_query($conn, $sql);
+            
+            if ($result->num_rows > 0) {
+                echo "<table class=\"my-5 mx-auto\">";
+                echo "<tr><th></th> <th> Jogador</th> <th>Pontuação </th> </tr>";
+                $count = 1;
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>".$count."</td>";
+                    echo "<td>". $row["apelido"]."</td>";
+                    echo "<td>".$row["pontos"]. " </td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                $error_msg = mysqli_error($conn);
+                $error = true;
+            }       
+        }                      
     }
 
-    function rankingGeral($player, $league) {
-        if($player!=NULL) {
-            if($league!=NULL) {
-                $conn = connect_db();                 
-                $sql = "SELECT apelido, pontot, nomel FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) ORDER BY pontot DESC;";
-                
-                $result=mysqli_query($conn, $sql);
-                if ($result->num_rows > 0) {
-                    echo "<table class=\"my-5 mx-auto col-12\">";
-                    echo "<tr class=\"ranking\"> <th></th><th> Jogador</th> <th>Pontuação </th> <th>Liga</th> </tr>";
-                    $count = 1;
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>".$count."</td>";
-                        echo "<td>". $row["apelido"]."</td>";
-                        echo "<td>".$row["pontot"]. " </td>";
-                        echo "<td>".$row["nomel"]. " </td>";    
-                        echo "</tr>";
-                        $count++;
-                    }
-                    echo "</table>";
-                } else {
-                    $error_msg = mysqli_error($conn);
-                    $error = true;
-                }       
-            } else {
-                $conn = connect_db();                 
-                $sql = "SELECT apelido, pontot FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou AND participantes.nomel ='".$_SESSION["liga"]."') ORDER BY pontot DESC;";
-                
-                $result=mysqli_query($conn, $sql);
-                if ($result->num_rows > 0) {
-                    echo "<table class=\"my-5 mx-auto col-12\">";
-                    echo "<tr><th></th> <th> Jogador</th> <th>Pontuação </th> </tr>";
-                    $count = 1;
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>".$count."</td>";
-                        echo "<td>". $row["apelido"]."</td>";
-                        echo "<td>".$row["pontot"]. " </td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    $error_msg = mysqli_error($conn);
-                    $error = true;
-                }       
-            }                 
+    function rankingGeral($league) {
+        if($league!=NULL) {
+            $conn = connect_db();                 
+            $sql = "SELECT apelido, pontot, nomel FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) WHERE nomel='$league' ORDER BY pontot DESC, apelido ASC;";
             
+            $result=mysqli_query($conn, $sql);
+            if ($result->num_rows > 0) {
+                echo "<table class=\"my-5 mx-auto\">";
+                echo "<tr class=\"ranking\"> <th></th><th> Jogador</th> <th>Pontuação </th> <th>Liga</th> </tr>";
+                $count = 1;
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>".$count."</td>";
+                    echo "<td>". $row["apelido"]."</td>";
+                    echo "<td>".$row["pontot"]. " </td>";
+                    echo "<td>".$row["nomel"]. " </td>";    
+                    echo "</tr>";
+                    $count++;
+                }
+                echo "</table>";
+            } else {
+                $error_msg = mysqli_error($conn);
+                $error = true;
+            }       
         } else {
-            $error_msg = "Você não está logado";
-        }
+            $conn = connect_db();                 
+            $sql = "SELECT apelido, pontot FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) ORDER BY pontot DESC, apelido ASC;";
+            
+            $result=mysqli_query($conn, $sql);
+            if ($result->num_rows > 0) {
+                echo "<table class=\"my-5 mx-auto \">";
+                echo "<tr><th></th> <th> Jogador</th> <th>Pontuação </th> </tr>";
+                $count = 1;
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>".$count."</td>";
+                    echo "<td>". $row["apelido"]."</td>";
+                    echo "<td>".$row["pontot"]. " </td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                $error_msg = mysqli_error($conn);
+                $error = true;
+            }       
+        }                 
     }
 
-    function rankingHighScore($player, $league) {
-        if($player!=NULL) {
-            if($league!=NULL) {
-                $conn = connect_db();                 
-                $sql = "SELECT apelido, highScore, nomel FROM Usuario INNER JOIN Participantes ON Usuario.apelido = Participantes.apelidou ORDER BY highScore DESC, apelido ASC;";
-                
-                $result=mysqli_query($conn, $sql);
-                if ($result->num_rows > 0) {
-                    echo "<tr> <th> Jogador <th/> <th> Pontuação <th/> <th> Liga <th/> </tr>";
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr> <th> " .  $row["apelido"]. " </th> <th> " . $row["highScore"] . " </th> <th> " . $row["nomel"]. "</th> </tr>";
-                    }
-                } else {
-                    $error_msg = mysqli_error($conn);
-                    $error = true;
-                }       
-            } else {
-                $conn = connect_db();                 
-                $sql = "SELECT apelido, highScore FROM usuario ORDER BY highScore DESC, apelido ASC;";
-                
-                $result=mysqli_query($conn, $sql);
-                if ($result->num_rows > 0) {
-                    echo "<tr> <th> Jogador <th/> <th> Pontuação <th/></tr>";
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr> <th> " . $row["apelido"]. " </th> <th> " . $row["highScore"]. " </th> </tr>";
-                    }
-                } else {
-                    $error_msg = mysqli_error($conn);
-                    $error = true;
-                }       
-            }                 
+    function rankingHighScore($league) {
+        if($league!=NULL) {
+            $conn = connect_db();                 
+            $sql = "SELECT apelido, highScore, nomel FROM Usuario INNER JOIN Participantes ON Usuario.apelido = Participantes.apelidou ORDER BY highScore DESC, apelido ASC;";
             
+            $result=mysqli_query($conn, $sql);
+            if ($result->num_rows > 0) {
+                echo "<tr> <th> Jogador <th/> <th> Pontuação <th/> <th> Liga <th/> </tr>";
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr> <th> " .  $row["apelido"]. " </th> <th> " . $row["highScore"] . " </th> <th> " . $row["nomel"]. "</th> </tr>";
+                }
+            } else {
+                $error_msg = mysqli_error($conn);
+                $error = true;
+            }       
         } else {
-            $error_msg = "Você não está logado";
-        }
+            $conn = connect_db();                 
+            $sql = "SELECT apelido, highScore FROM usuario ORDER BY highScore DESC, apelido ASC;";
+            
+            $result=mysqli_query($conn, $sql);
+            if ($result->num_rows > 0) {
+                echo "<tr> <th> Jogador <th/> <th> Pontuação <th/></tr>";
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr> <th> " . $row["apelido"]. " </th> <th> " . $row["highScore"]. " </th> </tr>";
+                }
+            } else {
+                $error_msg = mysqli_error($conn);
+                $error = true;
+            }       
+        }                 
     }
 
     function insertPontos($player, $ponto, $recorde) {

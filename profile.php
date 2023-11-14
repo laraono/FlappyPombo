@@ -40,6 +40,7 @@
         </div>
 </div>
 
+<?= $userName . " - " . $liga; ?>
 
 <h3  class="text-center my-5">Histórico de partidas</h3>
 <?php 
@@ -49,15 +50,15 @@
     <div class="row">
         <div class="col">
         <h3  class="text-center my-5">Ranking Semanal</h3>
-        <?php        rankingSemanal($userName, $liga) ?>
+        <?php        rankingSemanal("") ?>
         <h3  class="text-center my-5">Ranking Semanal da liga</h3>
-    <?php       rankingSemanal($userName, "")     ?>
+    <?php       rankingSemanal($liga)     ?>
         </div>
         <div class="col">
         <h3  class="text-center my-5">Ranking Geral</h3>
-        <?php         rankingGeral($userName, $liga); ?>
+        <?php         rankingGeral(""); ?>
         <h3  class="text-center my-5">Ranking Geral da liga</h3>
-    <?php         rankingGeral($userName, ""); ?>
+    <?php         rankingGeral($liga); ?>
         </div>
     </div>
 </div>
