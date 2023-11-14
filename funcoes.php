@@ -269,7 +269,7 @@
             $result=mysqli_query($conn, $sql);
 
             if ($result->num_rows > 0) {
-                echo "<table class=\"my-5 mx-auto\">";
+                echo "<table class=\"my-5 mx-auto col-12\">";
                 echo "<tr class=\"ranking\"> <th></th><th> Jogador</th> <th>Pontuação </th> <th>Liga</th> </tr>";
                 $count = 1;
                 while($row = $result->fetch_assoc()) {
@@ -293,7 +293,7 @@
             $result=mysqli_query($conn, $sql);
             
             if ($result->num_rows > 0) {
-                echo "<table class=\"my-5 mx-auto\">";
+                echo "<table class=\"my-5 mx-auto col-12\">";
                 echo "<tr><th></th> <th> Jogador</th> <th>Pontuação </th> </tr>";
                 $count = 1;
                 while($row = $result->fetch_assoc()) {
@@ -318,7 +318,7 @@
             
             $result=mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
-                echo "<table class=\"my-5 mx-auto\">";
+                echo "<table class=\"my-5 mx-auto col-12\">";
                 echo "<tr class=\"ranking\"> <th></th><th> Jogador</th> <th>Pontuação </th> <th>Liga</th> </tr>";
                 $count = 1;
                 while($row = $result->fetch_assoc()) {
@@ -341,7 +341,7 @@
             
             $result=mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
-                echo "<table class=\"my-5 mx-auto \">";
+                echo "<table class=\"my-5 mx-auto col-12\">";
                 echo "<tr><th></th> <th> Jogador</th> <th>Pontuação </th> </tr>";
                 $count = 1;
                 while($row = $result->fetch_assoc()) {

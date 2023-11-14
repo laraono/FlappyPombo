@@ -40,8 +40,6 @@
         </div>
 </div>
 
-<?= $userName . " - " . $liga; ?>
-
 <h3  class="text-center my-5">Histórico de partidas</h3>
 <?php 
         historicoPartidas($userName)
