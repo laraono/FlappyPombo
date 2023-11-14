@@ -32,6 +32,8 @@ cadastroUsuario($userName);
         </div>
       <?php endif; ?>
       <div class="card-body text-center my-3">
+      <h2>Registro</h2>
+      <hr>
       <?php if($userName==NULL): ?>
         <label for="name" class="form-label">Nome de Usuário: </label>
         <input type="text" name="name" class="form-control" value="<?php echo $userName; ?>" required><br>
@@ -43,7 +45,8 @@ cadastroUsuario($userName);
         <input type="password" name="confirm_password" value="" class="form-control" required><br>
       <?php endif;?>
        
-      <input type="submit" name="submit" value="Criar usuário" class="btn btn-dark col-3" >
+      <input type="submit" name="submit" value="Criar usuário" class="btn btn-dark col-3" ><br><br>
+      <a href="register.php" class="my-3">Fazer login</a>
       </div>
       </div>
 </form>

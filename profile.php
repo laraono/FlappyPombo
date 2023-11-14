@@ -19,17 +19,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
-<div class="my-5 mx-auto col-6">
-    <!-- <h2><?php $_SESSION['user_name']; ?></h2>
-    <h6><?php $_SESSION['liga']; ?></h6> -->
-    <a href="http://">Alterar liga</a> <br>
-    <a href="http://">Sair da liga</a>
+<div class="card border border-dark-subtle rounded my-5 mx-auto col-6">
+<div class="card-body my-3">
+    <h2>Nome de usuário: <?php echo $userName; ?></h2>
+    <h4><?php if ($liga != NULL): ?>
+        Liga: <?php echo $liga; ?>
+        </h4>
+            <a href="sailiga.php">Sair da liga</a>
+        
+        <?php else: ?>
+            <a href="liga.php">Entrar em uma liga</a> 
+        </h4>
+        <?php endif; ?>
+        </div>
 </div>
 
 

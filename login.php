@@ -25,11 +25,13 @@ login($userName);
   <div class="card-header bg-danger bg-gradient p-2 text-white"><?php echo $error_msg; ?></div>
 <?php endif; ?>
     <div class="card-body text-center my-3">
+      <h2>Login</h2>
+      <hr>
       <label for="name" class="form-label">Nome de Usuário: </label>
       <input type="text" name="name" value="" class="form-control" required><br>
       <label for="password" class="form-label">Senha: </label>
       <input type="password" name="password" value="" class="form-control" required><br>
-      <input type="submit" name="submit" value="Entrar" class="btn btn-dark col-3"> <br>
+      <input type="submit" name="submit" value="Entrar" class="btn btn-dark col-3"> <br><br>
       <a href="register.php" class="my-3">Ainda não tem uma conta?</a>
     </div>
     

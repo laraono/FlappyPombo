@@ -11,21 +11,11 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     </head>
     <body>
-    <section class="card">
-        <div class="card-body text-center my-3">
-        <h1>Olá, <?php echo $user?>! Clique aqui para iniciar uma partida:</h1>
-            <div>
-                <a class="btn btn-success" href=" <?php if ($userName!=NULL): ?>         
-                flappy.php
-                <?php else: ?> 
-                login.php    
-                <?php endif; ?>
-                ">Iniciar partida</a>    
-            </div>
-        </div>
-        
-        
-    </section>
-
+    <div id="index">
+    <div class="textblock"><p>
+        Essa não! Você deixou as portas do caminhão abertas! Voe e resgate as cartas que saíram voando!
+</p>
+<a class="btn btn-primary col-6 mx-3" href="<?php if ($userName!=NULL): ?>flappy.php<?php else: ?>login.php<?php endif; ?>">Iniciar partida</a>    
+    </div>
     </body>
     </html>
