@@ -12,6 +12,7 @@
     </head>
     <body>
     <div id="index">
+        <img src="assets\img\Caminhao.png" alt="">
     <div class="textblock"><p>
         Essa não! Você deixou as portas do caminhão abertas! Voe e resgate as cartas que saíram voando!
 </p>
