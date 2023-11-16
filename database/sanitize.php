@@ -5,4 +5,5 @@
     $texto = htmlspecialchars($texto);
     return $texto;
   }
+  
 ?>

@@ -1,7 +1,7 @@
 <?php
         require "nav.php";
         require_once "funcoes.php";
-    
+
         if(isset($_POST["ponto"]) && isset($_POST["recorde"])) {
             insertPontos($userName, $_POST["ponto"], $_POST["recorde"]);
         }
@@ -9,8 +9,8 @@
         if(isset($_POST["ponto"]) && isset($_POST["tempo"])) {
             inserirPartida($userName, $_POST["ponto"], $_POST["tempo"]);
         }
-       
 
+        historicoPartidas($userName, true);
     //    rankingHighScore($userName, "");
     ?>
 <!DOCTYPE html>
@@ -28,22 +28,37 @@
 <div class="card border border-dark-subtle rounded my-5 mx-auto col-6">
 <div class="card-body my-3">
     <h2>Nome de usuário: <?php echo $userName; ?></h2>
+
+    <?php
+    // Construa o caminho da imagem com base no nome de usuário
+    $imagePath = "fotos_perfil/" . $userName . ".jpg";
+
+    // Verifique se o arquivo da imagem existe antes de exibir
+    if (file_exists($imagePath)) {
+      $width = 150; // largura desejada
+      $height = 150; // altura desejada
+echo '<img src="' . $imagePath . '" class="fotoperfil" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';
+ } else {
+        echo '<p>Imagem de perfil não encontrada.</p>';
+    }
+    ?>
+
     <h4><?php if ($liga != NULL): ?>
         Liga: <?php echo $liga; ?>
         </h4>
             <a href="sailiga.php">Sair da liga</a>
-        
+
         <?php else: ?>
-            <a href="liga.php">Entrar em uma liga</a> 
+            <a href="liga.php">Entrar em uma liga</a>
         </h4>
         <?php endif; ?>
         </div>
 </div>
 
 <h3  class="text-center my-5">Histórico de partidas</h3>
-<?php 
-        historicoPartidas($userName)
-        ?>
+
+    <?php historicoPartidas($userName, true); ?>
+
 <div class="container">
     <div class="row">
         <div class="col">
@@ -60,7 +75,7 @@
         </div>
     </div>
 </div>
-   
-  
+
+
 </body>
 </html>
