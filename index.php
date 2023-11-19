@@ -1,6 +1,11 @@
 <?php
-        require "nav.php";
-    ?>
+    $cookieName = "semanal";
+    if(!isset($_COOKIE[$cookieName])) {
+        setcookie($cookieName, 0, time() + 86400 * 7, "/"); 
+    }
+    
+    require "nav.php";
+?>
     <!DOCTYPE html>
     <html lang="en">
     <head>

@@ -195,7 +195,7 @@ function endGame() {
   $.ajax({
     type: "POST",
     url: "profile.php",
-    data: { ponto: score, recorde: highScore, tempo: timeInSeconds },
+    data: { ponto: score, recorde: score, tempo: timeInSeconds },
     success: function (response) {
       console.log("oi");
     },

@@ -178,75 +178,75 @@
     }
 
     function cadastroUsuario($player) {
-    global $error, $error_msg, $success;
-    if ($player == NULL && $_SERVER["REQUEST_METHOD"] == "POST") {
-        $conn = connect_db();
+        global $error, $error_msg, $success;
+        if ($player == NULL && $_SERVER["REQUEST_METHOD"] == "POST") {
+            $conn = connect_db();
 
-        $name = mysqli_real_escape_string($conn, $_POST["name"]);
-        $password = mysqli_real_escape_string($conn, $_POST["password"]);
-        $check = mysqli_real_escape_string($conn, $_POST["confirm_password"]);
+            $name = mysqli_real_escape_string($conn, $_POST["name"]);
+            $password = mysqli_real_escape_string($conn, $_POST["password"]);
+            $check = mysqli_real_escape_string($conn, $_POST["confirm_password"]);
 
-        if ($password == $check) {
-            // Processar upload da imagem
-            $targetDirectory = "fotos_perfil/";  // Diretório onde as imagens serão armazenadas
-            $targetFile = $targetDirectory . $name . ".jpg"; // Nome do arquivo será o nome de usuário com extensão jpg
-            $uploadOk = 1;
-            $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+            if ($password == $check) {
+                // Processar upload da imagem
+                $targetDirectory = "fotos_perfil/";  // Diretório onde as imagens serão armazenadas
+                $targetFile = $targetDirectory . $name . ".jpg"; // Nome do arquivo será o nome de usuário com extensão jpg
+                $uploadOk = 1;
+                $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
-            // Verificar se o arquivo é uma imagem real
-            if (isset($_POST["submit"])) {
-                $check = getimagesize($_FILES["profile_image"]["tmp_name"]);
-                if ($check !== false) {
-                    $uploadOk = 1;
-                } else {
-                    $error_msg = "O arquivo não é uma imagem.";
+                // Verificar se o arquivo é uma imagem real
+                if (isset($_POST["submit"])) {
+                    $check = getimagesize($_FILES["profile_image"]["tmp_name"]);
+                    if ($check !== false) {
+                        $uploadOk = 1;
+                    } else {
+                        $error_msg = "O arquivo não é uma imagem.";
+                        $uploadOk = 0;
+                    }
+                }
+
+                // Verificar o tamanho da imagem (limite de 5 MB)
+                if ($_FILES["profile_image"]["size"] > 5000000) {
+                    $error_msg = "Desculpe, a imagem é muito grande (limite de 5 MB).";
                     $uploadOk = 0;
                 }
-            }
 
-            // Verificar o tamanho da imagem (limite de 5 MB)
-            if ($_FILES["profile_image"]["size"] > 5000000) {
-                $error_msg = "Desculpe, a imagem é muito grande (limite de 5 MB).";
-                $uploadOk = 0;
-            }
+                // Permitir apenas alguns formatos de arquivo
+                $allowedFormats = array("jpg", "jpeg", "png", "gif");
+                if (!in_array($imageFileType, $allowedFormats)) {
+                    $error_msg = "Desculpe, apenas arquivos JPG, JPEG, PNG e GIF são permitidos.";
+                    $uploadOk = 0;
+                }
 
-            // Permitir apenas alguns formatos de arquivo
-            $allowedFormats = array("jpg", "jpeg", "png", "gif");
-            if (!in_array($imageFileType, $allowedFormats)) {
-                $error_msg = "Desculpe, apenas arquivos JPG, JPEG, PNG e GIF são permitidos.";
-                $uploadOk = 0;
-            }
+                // Se houver erros no upload, exibir mensagem de erro
+                if ($uploadOk == 0) {
+                    $error = true;
+                } else {
+                    // Se tudo estiver correto, tentar fazer o upload
+                    if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $targetFile)) {
+                        // Atualizar o caminho da imagem na tabela do banco de dados
+                        $imagePath = $targetFile;
+                        $sql = "INSERT INTO usuario (apelido, senha, pontos, pontot, highScore, profile_image) VALUES ('$name', '$password', 0, 0, 0, '$imagePath');";
 
-            // Se houver erros no upload, exibir mensagem de erro
-            if ($uploadOk == 0) {
-                $error = true;
-            } else {
-                // Se tudo estiver correto, tentar fazer o upload
-                if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $targetFile)) {
-                    // Atualizar o caminho da imagem na tabela do banco de dados
-                    $imagePath = $targetFile;
-                    $sql = "INSERT INTO usuario (apelido, senha, pontos, pontot, highScore, profile_image) VALUES ('$name', '$password', 0, 0, 0, '$imagePath');";
-
-                    if (mysqli_query($conn, $sql)) {
-                        $success = true;
-                        $error = false;
+                        if (mysqli_query($conn, $sql)) {
+                            $success = true;
+                            $error = false;
+                        } else {
+                            $error_msg = mysqli_error($conn);
+                            $error = true;
+                        }
                     } else {
-                        $error_msg = mysqli_error($conn);
+                        $error_msg = "Desculpe, ocorreu um erro no upload da imagem.";
                         $error = true;
                     }
-                } else {
-                    $error_msg = "Desculpe, ocorreu um erro no upload da imagem.";
-                    $error = true;
                 }
+            } else {
+                $error_msg = "Senha não confere com a confirmação.";
+                $error = true;
             }
         } else {
-            $error_msg = "Senha não confere com a confirmação.";
-            $error = true;
+            $error_msg = "Você já está logado.";
         }
-    } else {
-        $error_msg = "Você já está logado.";
     }
-}
 
     function sairLiga($player, $league) {
         global $error, $error_msg, $sucess;
@@ -285,11 +285,15 @@
                 echo "<table class=\"my-5 mx-auto col-6\">";
                 echo "<tr> <th> Data </th> <th> Hora </th> <th> Pontuação </th> <th> Tempo de jogo</th> <th> Imagem de Perfil</th> </tr>";
                 while ($row = $result->fetch_assoc()) {
+                    $data = date("d/m/Y", strtotime($row["data"]));
+                    $hora = date("H:i", strtotime($row["hora"]));
+                    $tempoj = date("H:i", strtotime($row["tempoj"]));
+
                     echo "<tr>";
-                    echo "<td>" . $row["data"] . "</td>";
-                    echo "<td>" . $row["hora"] . "</td>";
+                    echo "<td>" . $data . "</td>";
+                    echo "<td>" . $hora . "</td>";
                     echo "<td>" . $row["pontuacao"] . "</td>";
-                    echo "<td>" . $row["tempoj"] . "</td>";
+                    echo "<td>" . $tempoj . "</td>";
 
                     // Adicione esta parte para exibir a imagem de perfil se necessário
                     if ($showProfileImage) {
@@ -312,17 +316,16 @@
     }
 
     function getProfileImagePath($player) {
-    $conn = connect_db();
-    $sql = "SELECT profile_image FROM usuario WHERE apelido='$player';";
+        $conn = connect_db();
+        $sql = "SELECT profile_image FROM usuario WHERE apelido='$player';";
 
-    $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql);
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        return $row['profile_image'];
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['profile_image'];
+        }
     }
-}
-
 
     function rankingSemanal($league) {
         if($league!=NULL) {
@@ -351,7 +354,7 @@
             }
         } else {
             $conn = connect_db();
-            $sql = "SELECT apelido, pontos FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) ORDER BY pontos DESC, apelido ASC;";
+            $sql = "SELECT apelido, pontos FROM usuario ORDER BY pontos DESC, apelido ASC;";
 
             $result=mysqli_query($conn, $sql);
 
@@ -365,6 +368,7 @@
                     echo "<td>". $row["apelido"]."</td>";
                     echo "<td>".$row["pontos"]. " </td>";
                     echo "</tr>";
+                    $count++;
                 }
                 echo "</table>";
             } else {
@@ -400,7 +404,7 @@
             }
         } else {
             $conn = connect_db();
-            $sql = "SELECT apelido, pontot FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) ORDER BY pontot DESC, apelido ASC;";
+            $sql = "SELECT apelido, pontot FROM usuario ORDER BY pontot DESC, apelido ASC;";
 
             $result=mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
@@ -413,6 +417,7 @@
                     echo "<td>". $row["apelido"]."</td>";
                     echo "<td>".$row["pontot"]. " </td>";
                     echo "</tr>";
+                    $count++;
                 }
                 echo "</table>";
             } else {
@@ -483,17 +488,23 @@
         date_default_timezone_set('America/Sao_Paulo');
         $conn = connect_db();
         $dia = date("D");
-        $hora = date("H:i");
+        $cookieName = "semanal";
 
-        if($dia=="Sat" && $hora=='23:59')
-        $sql = "UPDATE usuario set pontos=0;";
-
-        if (mysqli_query($conn, $sql)) {
-
-        } else {
-            $error_msg = mysqli_error($conn);
-            $error = true;
-        }
+        if($dia=="Sun") {
+            if(isset($_COOKIE[$cookieName]) ) {
+                if($_COOKIE[$cookieName]==0) {
+                    $sql = "UPDATE usuario set pontos=0;";
+        
+                    if (mysqli_query($conn, $sql)) {
+                        setcookie($cookieName, 1, time() + 86400 * 6, "/");  
+                    } else {
+                        $error_msg = mysqli_error($conn);
+                        $error = true;
+                    }
+                }
+            }
+        } 
+        
     }
 
     function inserirPartida($player, $ponto, $tempo) {
@@ -526,5 +537,5 @@
         }
     }
 
-
+    zerarPontuacaoSemanal();
 ?>

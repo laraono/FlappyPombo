@@ -10,8 +10,7 @@
             inserirPartida($userName, $_POST["ponto"], $_POST["tempo"]);
         }
 
-        historicoPartidas($userName, true);
-    //    rankingHighScore($userName, "");
+        //historicoPartidas($userName, true);
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,8 +36,8 @@
     if (file_exists($imagePath)) {
       $width = 150; // largura desejada
       $height = 150; // altura desejada
-echo '<img src="' . $imagePath . '" class="fotoperfil" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';
- } else {
+        echo '<img src="' . $imagePath . '" class="fotoperfil" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';
+    } else {
         echo '<p>Imagem de perfil não encontrada.</p>';
     }
     ?>
