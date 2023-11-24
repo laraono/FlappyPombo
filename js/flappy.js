@@ -194,11 +194,8 @@ function endGame() {
 
   $.ajax({
     type: "POST",
-    url: "profile.php",
-    data: { ponto: score, recorde: score, tempo: timeInSeconds },
-    success: function (response) {
-      console.log("oi");
-    },
+    url: "funcoes.php",
+    data: { ponto: score, tempo: timeInSeconds },
   });
 
   clearInterval(timerInterval);

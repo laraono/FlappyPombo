@@ -1,5 +1,6 @@
 <?php
     $cookieName = "semanal";
+    //ve se o cookie já existe para nao modificar o valor dele toda vez que essa pagina é acessada
     if(!isset($_COOKIE[$cookieName])) {
         setcookie($cookieName, 0, time() + 86400 * 7, "/"); 
     }

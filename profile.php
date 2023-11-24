@@ -1,17 +1,7 @@
 <?php
-        require "nav.php";
-        require_once "funcoes.php";
-
-        if(isset($_POST["ponto"]) && isset($_POST["recorde"])) {
-            insertPontos($userName, $_POST["ponto"], $_POST["recorde"]);
-        }
-
-        if(isset($_POST["ponto"]) && isset($_POST["tempo"])) {
-            inserirPartida($userName, $_POST["ponto"], $_POST["tempo"]);
-        }
-
-        //historicoPartidas($userName, true);
-    ?>
+    require "nav.php";
+    require_once "funcoes.php"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,15 +52,21 @@
     <div class="row">
         <div class="col">
         <h3  class="text-center my-5">Ranking Semanal</h3>
-        <?php        rankingSemanal("") ?>
+        <?php
+            rankingSemanal("");
+            if($liga) : 
+        ?>
         <h3  class="text-center my-5">Ranking Semanal da liga</h3>
-    <?php       rankingSemanal($liga)     ?>
+        <?php  rankingSemanal($liga); endif;  ?>
         </div>
         <div class="col">
         <h3  class="text-center my-5">Ranking Geral</h3>
-        <?php         rankingGeral(""); ?>
+        <?php
+            rankingGeral("");
+            if($liga) : 
+        ?>
         <h3  class="text-center my-5">Ranking Geral da liga</h3>
-    <?php         rankingGeral($liga); ?>
+        <?php  rankingGeral($liga); endif;  ?>
         </div>
     </div>
 </div>

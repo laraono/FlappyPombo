@@ -7,10 +7,9 @@
     foto VARCHAR(255),
     pontot INT,
     pontos INT,
-    highScore INT
+    highScore INT,
+    profile_image VARCHAR(255)
   )";
-
-  $sql = "ALTER TABLE Usuario ADD COLUMN profile_image VARCHAR(255)";
 
   if (mysqli_query($conn, $sql)) {
       echo "Table Usuario created successfully<br>";
