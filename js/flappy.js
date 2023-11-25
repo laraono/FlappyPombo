@@ -8,6 +8,9 @@ let celebration = document.getElementById("celebrationDiv");
 let startText = document.getElementById("startText");
 let endText = document.getElementById("endText");
 
+// Efeitos Sonoros
+let deathSound = new Audio("assets/audio/death.mp3");
+
 // Variáveis para controlar o jogo
 let gameIsRunning = false;
 let lastTimestamp;
@@ -80,13 +83,18 @@ function updateGameTime() {
   let seconds = timeInSeconds % 60;
   timeElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   timeInSeconds++;
-  updateHighScore(); // Atualiza a highscore a cada segundo
 }
 
 // Função para atualizar a pontuação
 function updateScore() {
   score++;
+  
+  // Cria uma nova instância do objeto de áudio
+  let scoreSound = new Audio("assets/audio/score.mp3");
+  scoreSound.play();
+
   scoreElement.textContent = `${score}`;
+  updateHighScore(); // Atualiza a highscore 
 }
 
 // Função para atualizar a melhor pontuação
@@ -187,6 +195,7 @@ function startGame() {
 // Função para encerrar o jogo
 function endGame() {
   mostrarImagemFixa(); // Passaro morto
+  deathSound.play();
   gameIsRunning = false;
   // Mostra a pontuação e a highScore do jogador
   endText.textContent = `Fim de jogo! Sua pontuação: ${score} - Highscore: ${highScore}. Pressione ESPAÇO para jogar novamente.`;
@@ -563,6 +572,9 @@ function createRandomAmmo() {
 let remainingAmmo = 3;
 
 function increaseAmmo() {
+  // Cria uma nova instância do objeto de áudio
+  let ammoSound = new Audio("assets/audio/ammo.mp3");
+  ammoSound.play();
   if (remainingAmmo < 3) {
     remainingAmmo++;
   }
@@ -571,6 +583,10 @@ function increaseAmmo() {
 // Função para disparar um tiro
 function shoot() {
   if (remainingAmmo > 0) {
+    // Cria uma nova instância do objeto de áudio para cada tiro
+    let shotSound = new Audio("assets/audio/shot.mp3");
+    shotSound.play();
+
     let bullet = document.createElement("div");
     bullet.className = "bullet";
     bullet.style.left =

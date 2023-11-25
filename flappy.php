@@ -11,6 +11,10 @@ require "force_authenticate.php";
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
+        <audio id="backgroundMusic" loop autoplay>
+        <source src="assets/audio/bg.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+        </audio>
         <div id="game-info">
             <div id="highScore">Highscore: 0</div>
         </div>
