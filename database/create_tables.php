@@ -4,7 +4,6 @@
   $sql = "CREATE TABLE Usuario (
     apelido VARCHAR(20) NOT NULL PRIMARY KEY,
     senha VARCHAR(20) NOT NULL,
-    foto VARCHAR(255),
     pontot INT,
     pontos INT,
     highScore INT,
@@ -20,6 +19,7 @@
   $sql = "CREATE TABLE Liga (
     nome VARCHAR(30) NOT NULL PRIMARY KEY,
     senha VARCHAR(20) NOT NULL,
+    datal DATE NOT NULL,
     foto INT
   )";
 
@@ -30,8 +30,9 @@
   }
 
   $sql = "CREATE TABLE Participantes (
-    nomel VARCHAR(20) NOT NULL,
-    apelidou VARCHAR(30) NOT NULL,
+    nomel VARCHAR(20) PRIMARY KEY,
+    apelidou VARCHAR(30) PRIMARY KEY,
+    pontot INT,
     FOREIGN KEY (nomel) REFERENCES Liga(nome),
     FOREIGN KEY (apelidou) REFERENCES Usuario(apelido)
   )";
@@ -44,7 +45,7 @@
 
   $sql = "CREATE TABLE Partida (
     id INT AUTO_INCREMENT NOT NULL,
-    data DATE NOT NULL,
+    datap DATE NOT NULL,
     hora TIME NOT NULL,
     pontuacao INT NOT NULL,
     tempoj TIME NOT NULL,
