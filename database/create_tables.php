@@ -30,9 +30,10 @@
   }
 
   $sql = "CREATE TABLE Participantes (
-    nomel VARCHAR(20) PRIMARY KEY,
-    apelidou VARCHAR(30) PRIMARY KEY,
+    nomel VARCHAR(20),
+    apelidou VARCHAR(30),
     pontot INT,
+    PRIMARY KEY(nomel,apelidou),
     FOREIGN KEY (nomel) REFERENCES Liga(nome),
     FOREIGN KEY (apelidou) REFERENCES Usuario(apelido)
   )";

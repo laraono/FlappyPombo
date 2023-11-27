@@ -105,7 +105,7 @@
                             $check = $senhaLiga["senha"];
 
                             if($password==$check) {
-                                $sql = "INSERT INTO participantes (apelidou, nomel) VALUES ('$player', '$nomeLiga');";
+                                $sql = "INSERT INTO participantes (apelidou, nomel, pontot) VALUES ('$player', '$nomeLiga', 0);";
 
                                 if(mysqli_query($conn, $sql)){
                                     $success = true;
@@ -157,8 +157,11 @@
 
                     //confere se não existe uma liga com o mesmo nome
                     if (!mysqli_num_rows($result)) {
+                        date_default_timezone_set('America/Sao_Paulo');
+                        $conn = connect_db();
+                        $dia = date("Y-m-d");
 
-                        $sql = "INSERT INTO liga(senha, nome) VALUES('$password', '$nomeLiga');";
+                        $sql = "INSERT INTO liga(senha, nome, datal) VALUES('$password', '$nomeLiga', '$data');";
 
                         if(mysqli_query($conn, $sql)){
                             $success = true;
@@ -298,7 +301,7 @@
             $conn = connect_db();
             $sql = "SELECT p.*, u.profile_image FROM Partida p
                     JOIN Usuario u ON p.apelidou = u.apelido
-                    WHERE p.apelidou='$player' ORDER BY p.data, p.hora;";
+                    WHERE p.apelidou='$player' ORDER BY p.datap, p.hora;";
 
             $result = mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
@@ -306,7 +309,7 @@
                 echo "<tr> <th> Data </th> <th> Hora </th> <th> Pontuação </th> <th> Tempo de jogo</th> <th> Imagem de Perfil</th> </tr>";
                 while ($row = $result->fetch_assoc()) {
                     //mudança do formato de tempo e data para ficar mais fácil a visualização
-                    $data = date("d/m/Y", strtotime($row["data"]));
+                    $data = date("d/m/Y", strtotime($row["datap"]));
                     $hora = date("H:i", strtotime($row["hora"]));
                     $tempoj = date("H:i", strtotime($row["tempoj"]));
 
@@ -393,7 +396,7 @@
         //ve que tipo de ranking sera mostrado, se o da liga ou o geral
         if($league!=NULL) {
             $conn = connect_db();
-            $sql = "SELECT apelido, pontot, nomel FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) WHERE nomel='$league' ORDER BY pontot DESC, apelido ASC;";
+            $sql = "SELECT apelido, participantes.pontot, nomel FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) WHERE nomel='$league' ORDER BY pontot DESC, apelido ASC;";
 
             $result=mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
@@ -459,7 +462,7 @@
         }
     }
 
-    function insertPontos($player, $ponto) {
+    function insertPontos($player, $ponto, $league) {
         //confere se o usuario esta logado
         if($player!=NULL) {
             $conn = connect_db();
@@ -469,12 +472,17 @@
             $row = $result->fetch_assoc();
             //confere se a pontuacao é maior que o highscore
             if($ponto > $row["highScore"]) {
-                $sql = "UPDATE usuario set pontot='$ponto'+pontot, pontos='$ponto'+pontos, highScore = '$ponto' WHERE apelido='$player';";
+                $sql = "UPDATE usuario SET pontot='$ponto'+pontot, pontos='$ponto'+pontos, highScore = '$ponto' WHERE apelido='$player';";
             } else {
-                $sql = "UPDATE usuario set pontot='$ponto'+pontot, pontos='$ponto'+pontos WHERE apelido='$player';";
+                $sql = "UPDATE usuario SET pontot='$ponto'+pontot, pontos='$ponto'+pontos WHERE apelido='$player';";
             }
 
             mysqli_query($conn, $sql);
+
+            if($league!=NULL) {
+                $sql = "UPDATE participantes SET pontot= pontot+$ponto WHERE nomel='$league' AND apelido='$player';";
+                mysqli_query($conn, $sql);
+            }
         } 
     }
 
@@ -517,7 +525,7 @@
                 $tempo = $minutes . ":" .  $seconds;
             }
 
-            $sql = "INSERT INTO partida(data, hora, pontuacao, tempoj, apelidou) VALUES('$dia', '$hora', '$ponto', '$tempo', '$player');";
+            $sql = "INSERT INTO partida(datap, hora, pontuacao, tempoj, apelidou) VALUES('$dia', '$hora', '$ponto', '$tempo', '$player');";
 
             if (mysqli_query($conn, $sql));
             
@@ -527,7 +535,7 @@
     zerarPontuacaoSemanal();
 
     if(isset($_POST["ponto"])) {
-        insertPontos($userName, $_POST["ponto"]);
+        insertPontos($userName, $_POST["ponto"], $liga);
     }
 
     if(isset($_POST["ponto"]) && isset($_POST["tempo"])) {
