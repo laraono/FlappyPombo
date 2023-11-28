@@ -1,3 +1,4 @@
+"use strict";
 // Obtém elementos do DOM
 let game = document.getElementById("game");
 let bird = document.getElementById("bird");
@@ -38,7 +39,7 @@ $.ajax({
   success: function (data) {
     highScore = oldHighScore = data;
     highScoreElement.textContent = "Highscore: " + data;
-    console.log(data);
+    //console.log(data);
   },
 });
 
@@ -426,7 +427,7 @@ function createRandomObstacles() {
     if (creationInterval < minCreationInterval) {
       creationInterval = minCreationInterval; // Defina um limite mínimo
     }
-    console.log(creationInterval);
+    //console.log(creationInterval);
     setTimeout(createRandomObstacles, creationInterval);
   }
 }
