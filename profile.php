@@ -14,11 +14,10 @@
 
 </head>
 <body>
-<div class="card border border-dark-subtle rounded my-5 mx-auto col-6">
-<div class="card-body my-3">
-    <h2>Nome de usuário: <?php echo $userName; ?></h2>
-
-    <?php
+<div class="p-3 container border border-dark-subtle rounded my-5 mx-auto col-6">
+<div class="row">
+<div class="col-3">
+<?php
     // Construa o caminho da imagem com base no nome de usuário
     $imagePath = "fotos_perfil/" . $userName . ".jpg";
 
@@ -26,12 +25,14 @@
     if (file_exists($imagePath)) {
       $width = 150; // largura desejada
       $height = 150; // altura desejada
-        echo '<img src="' . $imagePath . '" class="fotoperfil" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';
+        echo '<img src="' . $imagePath . '" class="fotoperfil rounded-circle" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';
     } else {
-        echo '<p>Imagem de perfil não encontrada.</p>';
+        echo '<img src="fotos_perfil/default.png" class="fotoperfil rounded-circle" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';
     }
     ?>
-
+</div>
+<div class="col-9">
+    <h2>Nome de usuário: <?php echo $userName; ?></h2>
     <h4><?php if ($liga != NULL): ?>
         Liga: <?php echo $liga; ?>
         </h4>
@@ -41,6 +42,7 @@
             <a href="liga.php">Entrar em uma liga</a>
         </h4>
         <?php endif; ?>
+</div>
         </div>
 </div>
 
