@@ -9,11 +9,11 @@ require "force_authenticate.php";
   <title>Flappy Bird</title>
   <link rel="stylesheet" href="css/flappy.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-Vkoo8q+CGI5+5P1NHA26zFvVnaLoMq63x1Dl9RMwoUqqeT9d9EmP7d4P5A4VgP" crossorigin="anonymous">
 </head>
 <body>
         <audio id="backgroundMusic" loop autoplay>
         <source src="assets/audio/bg.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
         </audio>
         <div id="game-info">
             <div id="highScore">Highscore: 0</div>
@@ -21,6 +21,9 @@ require "force_authenticate.php";
     <div class="page-content">
         <div id="game">
             <!-- UI -->
+            <div id="backButtonContainer">
+                <button id="backButton"><img src="assets/img/home.png"></button>
+            </div>
             <div id="ammoUI"> <!-- 3 ovos no topo da tela -->
                 <div id="bullets">
                     <img id="bullet" src="assets/img/egg.png" alt="Bala">

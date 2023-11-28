@@ -16,6 +16,25 @@
     margin: 5px 0; /* Espaçamento entre o temporizador e a pontuação */
   }
 
+  #backButtonContainer {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 3;
+  }
+
+  #backButton {
+      padding: 10px;
+      font-size: 16px;
+      background-color: transparent; /* Remova o fundo colorido */
+      border: none;
+      cursor: pointer;
+  }
+
+  #backButton img {
+    width: 35px;
+  }
+
   #score {
     position: absolute;
     top: 20px;
