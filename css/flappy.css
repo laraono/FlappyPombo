@@ -18,8 +18,8 @@
 
 #backButtonContainer {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 500px;
+  right: 400px;
   z-index: 3;
 }
 
