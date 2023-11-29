@@ -306,7 +306,7 @@
             $result = mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
                 echo "<table class=\"my-5 mx-auto col-6\">";
-                echo "<tr> <th> Data </th> <th> Hora </th> <th> Pontuação </th> <th> Tempo de jogo</th> <th> Imagem de Perfil</th> </tr>";
+                echo "<tr> <th> Data </th> <th> Hora </th> <th> Pontuação </th> <th> Tempo de jogo</th></tr>";
                 while ($row = $result->fetch_assoc()) {
                     //mudança do formato de tempo e data para ficar mais fácil a visualização
                     $data = date("d/m/Y", strtotime($row["datap"]));
@@ -318,15 +318,6 @@
                     echo "<td>" . $hora . "</td>";
                     echo "<td>" . $row["pontuacao"] . "</td>";
                     echo "<td>" . $tempoj . "</td>";
-
-                    // Adicione esta parte para exibir a imagem de perfil se necessário
-                    /*if ($showProfileImage) {
-                        echo "<td>";
-                        $profileImagePath = getProfileImagePath($player); // Substitua pela função correta para obter o caminho da imagem
-                        echo "<td><img src=\"$profileImagePath\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
-                        echo "</td>";
-                    }*/
-
                     echo "</tr>";
                 }
                 echo "</table>";
@@ -356,7 +347,7 @@
 
             if ($result->num_rows > 0) {
                 echo "<table class=\"my-5 mx-auto col-12\">";
-                echo "<tr class=\"ranking\"> <th></th><th> Jogador</th> <th>Pontuação </th> <th>Liga</th> </tr>";
+                echo "<tr class=\"ranking\"> <th></th><th> Jogador</th> <th>Pontuação </th> <th>Liga</th> <th></th></tr>";
                 $count = 1;
                 while($row = $result->fetch_assoc()) {
                     echo "<tr>";
@@ -364,7 +355,18 @@
                     echo "<td>". $row["apelido"]."</td>";
                     echo "<td>".$row["pontos"]. " </td>";
                     echo "<td>".$row["nomel"]. " </td>";
+                    if (getProfileImagePath($row["apelido"])) {
+                        echo "<td>";
+                        $profileImagePath = getProfileImagePath($row["apelido"]); // Substitua pela função correta para obter o caminho da imagem
+                        
+                    }
+                    else {
+                        $profileImagePath = "fotos_perfil/defalt.png"; // Substitua pela função 
+                    }
+                    echo "<td><img src=\"$profileImagePath\" class=\"rounded-circle\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
+                        echo "</td>";
                     echo "</tr>";
+
                     $count++;
                 }
                 echo "</table>";
@@ -377,13 +379,23 @@
 
             if ($result->num_rows > 0) {
                 echo "<table class=\"my-5 mx-auto col-12\">";
-                echo "<tr><th></th> <th> Jogador</th> <th>Pontuação </th> </tr>";
+                echo "<tr><th></th> <th> Jogador</th> <th>Pontuação</th> </tr>";
                 $count = 1;
                 while($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>".$count."</td>";
                     echo "<td>". $row["apelido"]."</td>";
                     echo "<td>".$row["pontos"]. " </td>";
+                    if (getProfileImagePath($row["apelido"])) {
+                        echo "<td>";
+                        $profileImagePath = getProfileImagePath($row["apelido"]); // Substitua pela função correta para obter o caminho da imagem
+                        
+                    }
+                    else {
+                        $profileImagePath = "fotos_perfil/defalt.png"; // Substitua pela função 
+                    }
+                    echo "<td><img src=\"$profileImagePath\" class=\"rounded-circle\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
+                        echo "</td>";
                     echo "</tr>";
                     $count++;
                 }
@@ -401,7 +413,7 @@
             $result=mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
                 echo "<table class=\"my-5 mx-auto col-12\">";
-                echo "<tr class=\"ranking\"> <th></th><th> Jogador</th> <th>Pontuação </th> <th>Liga</th> </tr>";
+                echo "<tr class=\"ranking\"> <th></th><th>Jogador</th> <th>Pontuação </th> <th>Liga</th><th></th> </tr>";
                 $count = 1;
                 while($row = $result->fetch_assoc()) {
                     echo "<tr>";
@@ -409,6 +421,16 @@
                     echo "<td>". $row["apelido"]."</td>";
                     echo "<td>".$row["pontot"]. " </td>";
                     echo "<td>".$row["nomel"]. " </td>";
+                    if (getProfileImagePath($row["apelido"])) {
+                        echo "<td>";
+                        $profileImagePath = getProfileImagePath($row["apelido"]); // Substitua pela função correta para obter o caminho da imagem
+                        
+                    }
+                    else {
+                        $profileImagePath = "fotos_perfil/defalt.png"; // Substitua pela função 
+                    }
+                    echo "<td><img src=\"$profileImagePath\" class=\"rounded-circle\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
+                        echo "</td>";
                     echo "</tr>";
                     $count++;
                 }
@@ -428,6 +450,16 @@
                     echo "<td>".$count."</td>";
                     echo "<td>". $row["apelido"]."</td>";
                     echo "<td>".$row["pontot"]. " </td>";
+                    if (getProfileImagePath($row["apelido"])) {
+                        echo "<td>";
+                        $profileImagePath = getProfileImagePath($row["apelido"]); // Substitua pela função correta para obter o caminho da imagem
+                        
+                    }
+                    else {
+                        $profileImagePath = "fotos_perfil/defalt.png"; // Substitua pela função 
+                    }
+                    echo "<td><img src=\"$profileImagePath\" class=\"rounded-circle\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
+                        echo "</td>";
                     echo "</tr>";
                     $count++;
                 }

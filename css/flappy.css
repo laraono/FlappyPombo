@@ -1,324 +1,317 @@
-@import url('https://fonts.cdnfonts.com/css/proggy-clean');
+@import url("https://fonts.cdnfonts.com/css/proggy-clean");
 
 /* Estilos para o temporizador e pontuação */
 #game-info {
-    position: absolute;
-    top: 20px; /* Ajuste a posição vertical conforme necessário */
-    right: 20px; /* Ajuste a posição horizontal conforme necessário */
-    background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
-    padding: 10px;
-    border-radius: 10px;
-    color: white;
-    font-size: 16px;
-  }
-  
-  #highScore {
-    margin: 5px 0; /* Espaçamento entre o temporizador e a pontuação */
-  }
-
-  #backButtonContainer {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    z-index: 3;
-  }
-
-  #backButton {
-      padding: 10px;
-      font-size: 16px;
-      background-color: transparent; /* Remova o fundo colorido */
-      border: none;
-      cursor: pointer;
-  }
-
-  #backButton img {
-    width: 35px;
-  }
-
-  #score {
-    position: absolute;
-    top: 20px;
-    left: 80%;
-    color: black;
-    font-size: 30px; 
-    font-family: 'ProggyCleanTTSZ', sans-serif;
-    z-index: 3;
+  position: absolute;
+  top: 20px; /* Ajuste a posição vertical conforme necessário */
+  right: 20px; /* Ajuste a posição horizontal conforme necessário */
+  /* background: rgba(0, 0, 0, 0.5); Fundo semi-transparente */
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
 }
 
-  #time {
-    position: absolute;
-    top: 20px;
-    left: 45%;
-    color: black;
-    font-size: 30px; 
-    font-family: 'ProggyCleanTTSZ', sans-serif;
-    z-index: 3;
+#highScore {
+  margin: 5px 0; /* Espaçamento entre o temporizador e a pontuação */
 }
-  
-  /* Estilos para o jogo */
-  .page-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative; /* Adicione isso para que os elementos flutuem em relação a este contêiner */
-  }
-  
-  #game {
-    width: 500px;
-    height: 600px;
-    background: url('../assets/img/sky.jpg') repeat-x;
-    border: 10px double #2E8B57;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    position: relative;
-    box-sizing: border-box;
-    padding: 20px;
-    animation: moveBackground 660s linear infinite;
-  }
-  
-  @keyframes moveBackground {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 100% 0;
-    }
-  }
-  
-  #bird {
-    width: 40px;
-    height: 45px;
-    position: absolute;
-    top: 50%;
-    left: 30%;
-    transform: translate(-50%, -50%);
-    z-index: 2; /* Adicione o z-index para controlar a sobreposição */
-  }
 
-  #bird img {
-    width: 100%;
-    height: 100%;
-    z-index: 2; /* Adicione o z-index para controlar a sobreposição */
-  }
+#backButtonContainer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
+}
 
-  .animated {
-    width: 100%;
-    height: 100%;
-    animation: birdFlyAnimation 0.5s infinite linear;
-    z-index: 2; /* Adicione o z-index para controlar a sobreposição */
-  }
-  
-  @keyframes birdFlyAnimation {
-    0% {
-      content: url('../assets/img/pombo.png');
-    }
-    100% {
-      content: url('../assets/img/pombo2.png');
-    }
-  }  
-  
-  .obstacle {
-    width: 50px; /* Largura do terceiro tipo de obstáculo */
-    height: 37px; /* Altura do terceiro tipo de obstáculo */
-    position: absolute;
-    animation: obstacleAnimation 0.5s infinite linear;
-    background-size: cover; /* Ajusta a imagem para cobrir a div */
-    background-image: url('../assets/img/green-yellow1.png'); /* Começa com o primeiro frame */
-    z-index: 1; /* Adicione o z-index para controlar a sobreposição */
-  }
+#backButton {
+  padding: 10px;
+  font-size: 16px;
+  background-color: transparent; /* Remova o fundo colorido */
+  border: none;
+  cursor: pointer;
+}
 
-  @keyframes obstacleAnimation {
-    0%, 100% {
-      background-image: url('../assets/img/green-yellow1.png');
-    }
-    25% {
-      background-image: url('../assets/img/green-yellow2.png');
-    }
-    50% {
-      background-image: url('../assets/img/green-yellow3.png'); /* Corrigido o caminho da imagem */
-    }
-    75% {
-      background-image: url('../assets/img/green-yellow4.png');
-    }
-  }  
+#backButton img {
+  width: 35px;
+}
 
-  .obstacle2 {
-    width: 140px; /* Largura do terceiro tipo de obstáculo */
-    height: 50px; /* Altura do terceiro tipo de obstáculo */
-    position: absolute;
-    animation: obstacle2Animation 0.7s infinite linear;
-    background-size: cover; /* Ajusta a imagem para cobrir a div */
-    background-image: url('../assets/img/black1.png'); /* Começa com o primeiro frame */
-    z-index: 1; /* Adicione o z-index para controlar a sobreposição */
-  }
+#score {
+  position: absolute;
+  top: 20px;
+  left: 80%;
+  color: black;
+  font-size: 30px;
+  font-family: "ProggyCleanTTSZ", sans-serif;
+  z-index: 3;
+}
 
-  @keyframes obstacle2Animation {
-    0% {
-      background-image: url('../assets/img/black1.png');
-    }
-    100% {
-      background-image: url('../assets/img/black2.png');
-    }
-  }  
+#time {
+  position: absolute;
+  top: 20px;
+  left: 45%;
+  color: black;
+  font-size: 30px;
+  font-family: "ProggyCleanTTSZ", sans-serif;
+  z-index: 3;
+}
 
-  .obstacle3 {
-    width: 110px; /* Largura do segundo tipo de obstáculo */
-    height: 70px; /* Altura do segundo tipo de obstáculo */
-    position: absolute;
-    background-size: 100% 100%;  
-    z-index: 1; /* Adicione o z-index para controlar a sobreposição */
-  }
-  
-  #endText {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'ProggyCleanTTSZ', sans-serif;
-    font-size: 24px;
-    color: red;
-    background-color: rgba(255, 0, 0, 0.2); /* Fundo vermelho transparente */
-    padding: 10px; /* Espaçamento interno para destacar o texto */
-    border-radius: 10px; /* Cantos arredondados */
-    text-align: center; /* Centraliza o texto horizontalmente */
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Sombra ao redor do texto */
-    font-weight: bold; /* Texto em negrito */
-  }
+/* Estilos para o jogo */
+.page-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative; /* Adicione isso para que os elementos flutuem em relação a este contêiner */
+}
 
-  #startText {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'ProggyCleanTTSZ', sans-serif;
-    font-size: 30px;
-    color: #FF69B4; /* Rosa */
-    background-color: rgba(255, 105, 180, 0.2); /* Fundo rosa transparente */
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
-    font-weight: bold;
-  }
-  
-  .card {
-    width: 50px;
-    height: 20px;
-    position: absolute;
-    animation: cardAnimation 1s infinite steps(6); /* 6 é o número de frames */
-    z-index: 2; /* Adicione o z-index para controlar a sobreposição */
-    background-size: contain;
-    background-image: url('../assets/img/card1.png'); /* Começa com o primeiro frame */
-  }
-  
-  @keyframes cardAnimation {
-    0% {
-      background-image: url('../assets/img/card1.png');
-    }
-    16.666% {
-      background-image: url('../assets/img/card2.png');
-    }
-    33.333% {
-      background-image: url('../assets/img/card3.png');
-    }
-    50% {
-      background-image: url('../assets/img/card4.png');
-    }
-    66.666% {
-      background-image: url('../assets/img/card5.png');
-    }
-    83.333% {
-      background-image: url('../assets/img/card6.png');
-    }
-    100% {
-      background-image: url('../assets/img/card1.png');
-    }
-  }
-  
+#game {
+  width: 500px;
+  height: 600px;
+  background: url("../assets/img/sky.jpg") repeat-x;
+  border: 10px double #2e8b57;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  box-sizing: border-box;
+  padding: 20px;
+  animation: moveBackground 660s linear infinite;
+}
 
-  .ammo {
-    width: 25px; /* Largura da div */
-    height: 40px; /* Altura da div */
-    background: url('../assets/img/egg-parachute.png') no-repeat; /* Caminho para a imagem PNG */
-    background-size: contain; /* Ajusta o tamanho da imagem para caber na div */
-    position: absolute;
-    z-index: 2; /* Adicione o z-index para controlar a sobreposição */
-    /* border-radius: 50%; */
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
   }
-  
-  .bullet {
-    width: 15px; /* Largura do tiro */
-    height: 15px; /* Altura do tiro */
-    background: url('../assets/img/egg.png') no-repeat; /* Caminho para a imagem PNG */
-    background-size: contain; /* Ajusta o tamanho da imagem para caber na div */
-    position: absolute;
-    position: absolute;
-    border-radius: 50%;
-    z-index: 2; /* Adicione o z-index para controlar a sobreposição */
+  100% {
+    background-position: 100% 0;
   }
+}
 
-  #ammoUI {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 3; /* Adicione o z-index para controlar a sobreposição */
-  }
+#bird {
+  width: 40px;
+  height: 45px;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 2; /* Adicione o z-index para controlar a sobreposição */
+}
 
-  .card-img {
-    position: absolute;
-    top: 20px;
-    left: 85%;
-    z-index: 3; /* Adicione o z-index para controlar a sobreposição */
-  }
-  
-  #bullets {
-    display: flex;
-    z-index: 3; /* Adicione o z-index para controlar a sobreposição */
-  }
-  
-  #bullets img {
-    width: 30px; /* Ajuste o tamanho da imagem da bala conforme necessário */
-    height: 30px;
-    margin-right: 5px; /* Espaçamento entre as imagens de bala */
-  }
-  
-  #celebrationDiv {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 2px solid #000;
-    padding: 20px;
-    text-align: center;
-    z-index: 3; /* Adicione o z-index para controlar a sobreposição */
-  }
+#bird img {
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Adicione o z-index para controlar a sobreposição */
+}
 
-  #celebrationDiv p {
-    font-family: 'ProggyCleanTTSZ', sans-serif;
-    font-size: 24px;
+.animated {
+  width: 100%;
+  height: 100%;
+  animation: birdFlyAnimation 0.5s infinite linear;
+  z-index: 2; /* Adicione o z-index para controlar a sobreposição */
+}
+
+@keyframes birdFlyAnimation {
+  0% {
+    content: url("../assets/img/pombo.png");
   }
-  
-  #birdAnimation {
-    width: 100px;
-    height: 100px;
-    margin-top: 20px;
-    animation: birdAnimation 0.3s infinite alternate;
+  100% {
+    content: url("../assets/img/pombo2.png");
   }
-  
-  @keyframes birdAnimation {
-    0% {
-      content: url('../assets/img/bird1.png');
-    }
-    100% {
-      content: url('../assets/img/bird2.png');
-    }
+}
+
+.obstacle {
+  width: 50px; /* Largura do terceiro tipo de obstáculo */
+  height: 37px; /* Altura do terceiro tipo de obstáculo */
+  position: absolute;
+  animation: obstacleAnimation 0.5s infinite linear;
+  background-size: cover; /* Ajusta a imagem para cobrir a div */
+  background-image: url("../assets/img/green-yellow1.png"); /* Começa com o primeiro frame */
+  z-index: 1; /* Adicione o z-index para controlar a sobreposição */
+}
+
+@keyframes obstacleAnimation {
+  0%,
+  100% {
+    background-image: url("../assets/img/green-yellow1.png");
   }
-  
+  25% {
+    background-image: url("../assets/img/green-yellow2.png");
+  }
+  50% {
+    background-image: url("../assets/img/green-yellow3.png"); /* Corrigido o caminho da imagem */
+  }
+  75% {
+    background-image: url("../assets/img/green-yellow4.png");
+  }
+}
 
+.obstacle2 {
+  width: 140px; /* Largura do terceiro tipo de obstáculo */
+  height: 50px; /* Altura do terceiro tipo de obstáculo */
+  position: absolute;
+  animation: obstacle2Animation 0.7s infinite linear;
+  background-size: cover; /* Ajusta a imagem para cobrir a div */
+  background-image: url("../assets/img/black1.png"); /* Começa com o primeiro frame */
+  z-index: 1; /* Adicione o z-index para controlar a sobreposição */
+}
 
+@keyframes obstacle2Animation {
+  0% {
+    background-image: url("../assets/img/black1.png");
+  }
+  100% {
+    background-image: url("../assets/img/black2.png");
+  }
+}
 
+.obstacle3 {
+  width: 110px; /* Largura do segundo tipo de obstáculo */
+  height: 70px; /* Altura do segundo tipo de obstáculo */
+  position: absolute;
+  background-size: 100% 100%;
+  z-index: 1; /* Adicione o z-index para controlar a sobreposição */
+}
 
+#endText {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "ProggyCleanTTSZ", sans-serif;
+  font-size: 24px;
+  color: red;
+  background-color: rgba(255, 0, 0, 0.2); /* Fundo vermelho transparente */
+  padding: 10px; /* Espaçamento interno para destacar o texto */
+  border-radius: 10px; /* Cantos arredondados */
+  text-align: center; /* Centraliza o texto horizontalmente */
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Sombra ao redor do texto */
+  font-weight: bold; /* Texto em negrito */
+}
 
+#startText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "ProggyCleanTTSZ", sans-serif;
+  font-size: 30px;
+  color: #ff69b4; /* Rosa */
+  background-color: rgba(255, 105, 180, 0.2); /* Fundo rosa transparente */
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+  font-weight: bold;
+}
 
+.card {
+  width: 50px;
+  height: 20px;
+  position: absolute;
+  animation: cardAnimation 1s infinite steps(6); /* 6 é o número de frames */
+  z-index: 2; /* Adicione o z-index para controlar a sobreposição */
+  background-size: contain;
+  background-image: url("../assets/img/card1.png"); /* Começa com o primeiro frame */
+}
+
+@keyframes cardAnimation {
+  0% {
+    background-image: url("../assets/img/card1.png");
+  }
+  16.666% {
+    background-image: url("../assets/img/card2.png");
+  }
+  33.333% {
+    background-image: url("../assets/img/card3.png");
+  }
+  50% {
+    background-image: url("../assets/img/card4.png");
+  }
+  66.666% {
+    background-image: url("../assets/img/card5.png");
+  }
+  83.333% {
+    background-image: url("../assets/img/card6.png");
+  }
+  100% {
+    background-image: url("../assets/img/card1.png");
+  }
+}
+
+.ammo {
+  width: 25px; /* Largura da div */
+  height: 40px; /* Altura da div */
+  background: url("../assets/img/egg-parachute.png") no-repeat; /* Caminho para a imagem PNG */
+  background-size: contain; /* Ajusta o tamanho da imagem para caber na div */
+  position: absolute;
+  z-index: 2; /* Adicione o z-index para controlar a sobreposição */
+  /* border-radius: 50%; */
+}
+
+.bullet {
+  width: 15px; /* Largura do tiro */
+  height: 15px; /* Altura do tiro */
+  background: url("../assets/img/egg.png") no-repeat; /* Caminho para a imagem PNG */
+  background-size: contain; /* Ajusta o tamanho da imagem para caber na div */
+  position: absolute;
+  position: absolute;
+  border-radius: 50%;
+  z-index: 2; /* Adicione o z-index para controlar a sobreposição */
+}
+
+#ammoUI {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 3; /* Adicione o z-index para controlar a sobreposição */
+}
+
+.card-img {
+  position: absolute;
+  top: 20px;
+  left: 85%;
+  z-index: 3; /* Adicione o z-index para controlar a sobreposição */
+}
+
+#bullets {
+  display: flex;
+  z-index: 3; /* Adicione o z-index para controlar a sobreposição */
+}
+
+#bullets img {
+  width: 30px; /* Ajuste o tamanho da imagem da bala conforme necessário */
+  height: 30px;
+  margin-right: 5px; /* Espaçamento entre as imagens de bala */
+}
+
+#celebrationDiv {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid #000;
+  padding: 20px;
+  text-align: center;
+  z-index: 3; /* Adicione o z-index para controlar a sobreposição */
+}
+
+#celebrationDiv p {
+  font-family: "ProggyCleanTTSZ", sans-serif;
+  font-size: 24px;
+}
+
+#birdAnimation {
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+  animation: birdAnimation 0.3s infinite alternate;
+}
+
+@keyframes birdAnimation {
+  0% {
+    content: url("../assets/img/bird1.png");
+  }
+  100% {
+    content: url("../assets/img/bird2.png");
+  }
+}

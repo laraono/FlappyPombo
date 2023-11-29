@@ -17,13 +17,11 @@ require "force_authenticate.php";
         </audio>
         <div id="game-info">
             <div id="highScore">Highscore: 0</div>
+            <button id="backButton"><img src="assets/img/home.png"></button>
         </div>
     <div class="page-content">
         <div id="game">
             <!-- UI -->
-            <div id="backButtonContainer">
-                <button id="backButton"><img src="assets/img/home.png"></button>
-            </div>
             <div id="ammoUI"> <!-- 3 ovos no topo da tela -->
                 <div id="bullets">
                     <img id="bullet" src="assets/img/egg.png" alt="Bala">
