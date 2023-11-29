@@ -22,9 +22,9 @@
     $imagePath = "fotos_perfil/" . $userName . ".jpg";
 
     // Verifique se o arquivo da imagem existe antes de exibir
+    $width = 150; // largura desejada
+    $height = 150; // altura desejada
     if (file_exists($imagePath)) {
-      $width = 150; // largura desejada
-      $height = 150; // altura desejada
         echo '<img src="' . $imagePath . '" class="fotoperfil rounded-circle" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';
     } else {
         echo '<img src="fotos_perfil/default.png" class="fotoperfil rounded-circle" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';

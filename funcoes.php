@@ -494,8 +494,10 @@
                         $targetFile = $targetDirectory . $player . ".jpg"; // Nome do arquivo será o nome de usuário com extensão jpg
 
                         //deletar a imagem existente
-                        $file_to_delete = $targetFile;
-                        unlink($file_to_delete);
+                        if(file_exists($targetFile)) {
+                            $file_to_delete = $targetFile;
+                            unlink($file_to_delete);
+                        }
 
                         $uploadOk = 1;
                         $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
