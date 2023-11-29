@@ -356,7 +356,6 @@
                     echo "<td>".$row["pontos"]. " </td>";
                     echo "<td>".$row["nomel"]. " </td>";
                     if (getProfileImagePath($row["apelido"])) {
-                        echo "<td>";
                         $profileImagePath = getProfileImagePath($row["apelido"]); // Substitua pela função correta para obter o caminho da imagem
                         
                     }
@@ -364,7 +363,6 @@
                         $profileImagePath = "fotos_perfil/default.png"; // Substitua pela função 
                     }
                     echo "<td><img src=\"$profileImagePath\" class=\"rounded-circle\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
-                        echo "</td>";
                     echo "</tr>";
 
                     $count++;
@@ -387,7 +385,6 @@
                     echo "<td>". $row["apelido"]."</td>";
                     echo "<td>".$row["pontos"]. " </td>";
                     if (getProfileImagePath($row["apelido"])) {
-                        echo "<td>";
                         $profileImagePath = getProfileImagePath($row["apelido"]); // Substitua pela função correta para obter o caminho da imagem
                         
                     }
@@ -395,7 +392,6 @@
                         $profileImagePath = "fotos_perfil/default.png"; // Substitua pela função 
                     }
                     echo "<td><img src=\"$profileImagePath\" class=\"rounded-circle\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
-                        echo "</td>";
                     echo "</tr>";
                     $count++;
                 }
@@ -422,7 +418,6 @@
                     echo "<td>".$row["pontot"]. " </td>";
                     echo "<td>".$row["nomel"]. " </td>";
                     if (getProfileImagePath($row["apelido"])) {
-                        echo "<td>";
                         $profileImagePath = getProfileImagePath($row["apelido"]); // Substitua pela função correta para obter o caminho da imagem
                         
                     }
@@ -430,7 +425,6 @@
                         $profileImagePath = "fotos_perfil/default.png"; // Substitua pela função 
                     }
                     echo "<td><img src=\"$profileImagePath\" class=\"rounded-circle\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
-                        echo "</td>";
                     echo "</tr>";
                     $count++;
                 }
@@ -451,7 +445,6 @@
                     echo "<td>". $row["apelido"]."</td>";
                     echo "<td>".$row["pontot"]. " </td>";
                     if (getProfileImagePath($row["apelido"])) {
-                        echo "<td>";
                         $profileImagePath = getProfileImagePath($row["apelido"]); // Substitua pela função correta para obter o caminho da imagem
                         
                     }
@@ -459,7 +452,6 @@
                         $profileImagePath = "fotos_perfil/default.png"; // Substitua pela função 
                     }
                     echo "<td><img src=\"$profileImagePath\" class=\"rounded-circle\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
-                        echo "</td>";
                     echo "</tr>";
                     $count++;
                 }
