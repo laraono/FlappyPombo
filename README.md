@@ -1,5 +1,3 @@
-![Imagem header](assets/img/fundoprincipal.png)
-
 # FlappyPombo
 
 ## Sobre o Jogo
