@@ -408,7 +408,7 @@
         //ve que tipo de ranking sera mostrado, se o da liga ou o geral
         if($league!=NULL) {
             $conn = connect_db();
-            $sql = "SELECT apelido, participantes.pontot, nomel FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) WHERE nomel='$league' ORDER BY pontot DESC, apelido ASC;";
+            $sql = "SELECT apelido, participantes.pontot, nomel FROM usuario INNER JOIN participantes ON (usuario.apelido = participantes.apelidou) WHERE nomel='$league' ORDER BY participantes.pontot DESC, apelido ASC;";
 
             $result=mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
@@ -486,8 +486,8 @@
             mysqli_query($conn, $sql);
 
             if($league!=NULL) {
-                $sql = "UPDATE participantes SET pontot= pontot+$ponto WHERE nomel='$league' AND apelido='$player';";
-                mysqli_query($conn, $sql);
+                $query = "UPDATE participantes SET pontot= pontot +'$ponto' WHERE nomel='$league' AND apelidou='$player';";
+                mysqli_query($conn, $query);
             }
         } 
     }
