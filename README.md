@@ -1,3 +1,5 @@
+![Imagem header](assets/img/fundoprincipal.png)
+
 # FlappyPombo
 
 ## Sobre o Jogo
@@ -18,7 +20,6 @@ FlappyPombo é um jogo inspirado em Flappy Bird, com uma narrativa divertida. A 
 
 ## Liga e Classificação Semanal
 
-![Imagem da Liga](URL_da_Imagem_Liga)
 
 - Os jogadores podem participar de ligas.
 - A pontuação e classificação semanal são exibidas em comparação com outros jogadores da mesma liga.
@@ -49,6 +50,17 @@ Siga os passos abaixo para configurar e iniciar o FlappyPombo:
 
 Antes de iniciar uma partida, certifique-se de efetuar o login em sua conta ou registrar-se caso ainda não tenha uma conta.
 
+## Tecnologias Utilizadas
+
+- HTML5
+- PHP
+- JavaScript
+- CSS3
+- MySQL
+- DOM
+- Bootstrap
+
+
 ## Desenvolvedores
 
 Este projeto foi desenvolvido pelos alunos do curso superior de Tecnologia em Análise e Desenvolvimento de Sistemas, do Setor de Educação Profissional e Tecnológica (SEPT), da Universidade Federal do Paraná (UFPR).
@@ -63,23 +75,43 @@ Este projeto foi desenvolvido pelos alunos do curso superior de Tecnologia em An
 
 Este projeto faz parte da disciplina DS122 - Desenvolvimento Web I, ministrada pelo Prof. Alexander Robert Kutzke.
 
-## Contribuição
+## Estrutura do Projeto
 
-Se deseja contribuir para o desenvolvimento do FlappyPombo, siga as diretrizes de contribuição no arquivo [CONTRIBUTING.md](CONTRIBUTING.md).
+| Diretório          | Arquivos / Subdiretórios               |
+|---------------------|--------------------------------------|
+| **assets**          |   audio                          |
+|            |                   img                      |
+| **CSS**             |  flappy |                                      |    
+|           |  style                                                                                      |
+| **database**        |    create_db.php                                   |  
+|    |        create_tables.php                              |
+| |         db_close_connection.php                             |
+|  |      db_connection.php                          |
+|  |          sanitize.php               |           
+| **fotos_perfil**    |                                      |
+| **js**              |         flappyjs                             |
+|      |     mainjs|                                                                      |
+| **autheticate**     |                                      |
+| **db_credentials**  |                                      |
+| **db_functions**    |                                      |
+| **editprofile**     |                                      |
+| **flappy**          |                                      |
+| **force_authenticate** |                                  |
+| **funcoes**         |                                      |
+| **index**           |                                      |
+| **json**            |                                      |
+| **liga**            |                                      |
+| **login**           |                                      |
+| **logout**          |                                      |
+| **nav**             |                                      |
+| **profile**         |                                      |
+| **README**          |                                      |
+| **register**        |                                      |
+| **sailiga**         |                                      |
 
-## Problemas Conhecidos
-
-Nenhum problema conhecido no momento.
-
-## Roadmap
-
-- Implementar novas funcionalidades.
-- Corrigir bugs identificados.
 
 ## Agradecimentos
 
 Agradecemos ao Prof. Alexander Robert Kutzke pela orientação durante o desenvolvimento do projeto.
 
-## Licença
 
-Este projeto é licenciado sob a [Licença MIT](LICENSE).
