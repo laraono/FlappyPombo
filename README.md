@@ -126,37 +126,38 @@ Este projeto faz parte da disciplina DS122 - Desenvolvimento Web I, ministrada p
 
 ## Estrutura do Projeto
 
-| Diretório              | Arquivos / Subdiretórios |
-| ---------------------- | ------------------------ | --- |
-| **assets**             | audio                    |
-|                        | img                      |
-| **CSS**                | flappy                   |     |
-|                        | style                    |
-| **database**           | create_db.php            |
-|                        | create_tables.php        |
-|                        | db_close_connection.php  |
-|                        | db_connection.php        |
-|                        | sanitize.php             |
-| **fotos_perfil**       |                          |
-| **js**                 | flappyjs                 |
-|                        | mainjs                   |     |
-| **autheticate**        |                          |
-| **db_credentials**     |                          |
-| **db_functions**       |                          |
-| **editprofile**        |                          |
-| **flappy**             |                          |
-| **force_authenticate** |                          |
-| **funcoes**            |                          |
-| **index**              |                          |
-| **json**               |                          |
-| **liga**               |                          |
-| **login**              |                          |
-| **logout**             |                          |
-| **nav**                |                          |
-| **profile**            |                          |
-| **README**             |                          |
-| **register**           |                          |
-| **sailiga**            |                          |
+| Diretório          | Arquivos / Subdiretórios               |
+|---------------------|--------------------------------------|
+| **assets**          |   audio                          |
+|            |                   img                      |
+| **CSS**             |  flappy |                                      |    
+|           |  style                                                                                      |
+| **database**        |    create_db.php                                   |  
+|    |        create_tables.php                              |
+| |         db_close_connection.php                             |
+|  |      db_connection.php                          |
+|  |          sanitize.php               |           
+| **fotos_perfil**    |                                      |
+| **js**              |         flappyjs                             |
+|      |     mainjs|                                                                      |
+| **autheticate**     |                                      |
+| **db_credentials**  |                                      |
+| **db_functions**    |                                      |
+| **editprofile**     |                                      |
+| **flappy**          |                                      |
+| **force_authenticate** |                                  |
+| **funcoes**         |                                      |
+| **index**           |                                      |
+| **json**            |                                      |
+| **liga**            |                                      |
+| **login**           |                                      |
+| **logout**          |                                      |
+| **nav**             |                                      |
+| **profile**         |                                      |
+| **README**          |                                      |
+| **register**        |                                      |
+| **sailiga**         |                                      |
+
 
 ## Agradecimentos
 
