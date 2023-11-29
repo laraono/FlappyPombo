@@ -361,7 +361,7 @@
                         
                     }
                     else {
-                        $profileImagePath = "fotos_perfil/defalt.png"; // Substitua pela função 
+                        $profileImagePath = "fotos_perfil/default.png"; // Substitua pela função 
                     }
                     echo "<td><img src=\"$profileImagePath\" class=\"rounded-circle\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
                         echo "</td>";
@@ -392,7 +392,7 @@
                         
                     }
                     else {
-                        $profileImagePath = "fotos_perfil/defalt.png"; // Substitua pela função 
+                        $profileImagePath = "fotos_perfil/default.png"; // Substitua pela função 
                     }
                     echo "<td><img src=\"$profileImagePath\" class=\"rounded-circle\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
                         echo "</td>";
@@ -427,7 +427,7 @@
                         
                     }
                     else {
-                        $profileImagePath = "fotos_perfil/defalt.png"; // Substitua pela função 
+                        $profileImagePath = "fotos_perfil/default.png"; // Substitua pela função 
                     }
                     echo "<td><img src=\"$profileImagePath\" class=\"rounded-circle\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
                         echo "</td>";
@@ -456,7 +456,7 @@
                         
                     }
                     else {
-                        $profileImagePath = "fotos_perfil/defalt.png"; // Substitua pela função 
+                        $profileImagePath = "fotos_perfil/default.png"; // Substitua pela função 
                     }
                     echo "<td><img src=\"$profileImagePath\" class=\"rounded-circle\" alt=\"Imagem de Perfil\" style=\"width:50px;height:50px;\"></td>";
                         echo "</td>";
