@@ -18,7 +18,7 @@
 <div class="row">
 <div class="col-3">
 <?php
-    // Construa o caminho da imagem com base no nome de usuário
+    // Constrói o caminho da imagem com base no nome de usuário
     $imagePath = "fotos_perfil/" . $userName . ".jpg";
     $width = 150; // largura desejada
     $height = 150; // altura desejada
