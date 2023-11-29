@@ -10,7 +10,7 @@
 }
 
 #index {
-  background-image: url("../assets/img/BackComplete.png") !important;
+  background-image: url("../assets/img/fundoprincipal.png") !important;
   height: 99%;
   width: 100%;
   /* Center and scale the image nicely */
@@ -59,3 +59,6 @@ table tr .ranking::before {
   text-align: right;
 }
 
+#backButton img {
+  width: 35px;
+  }
