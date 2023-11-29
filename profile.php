@@ -20,11 +20,11 @@
 <?php
     // Construa o caminho da imagem com base no nome de usuário
     $imagePath = "fotos_perfil/" . $userName . ".jpg";
-
+    $width = 150; // largura desejada
+    $height = 150; // altura desejada
     // Verifique se o arquivo da imagem existe antes de exibir
     if (file_exists($imagePath)) {
-      $width = 150; // largura desejada
-      $height = 150; // altura desejada
+
         echo '<img src="' . $imagePath . '" class="fotoperfil rounded-circle" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';
     } else {
         echo '<img src="fotos_perfil/default.png" class="fotoperfil rounded-circle" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';
@@ -42,6 +42,7 @@
             <a href="liga.php">Entrar em uma liga</a>
         </h4>
         <?php endif; ?>
+        <h5><a href="editprofile.php">Mudar dados</a></h5>
 </div>
         </div>
 </div>
