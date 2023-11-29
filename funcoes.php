@@ -493,6 +493,7 @@
                         $targetDirectory = "fotos_perfil/";  // Diretório onde as imagens serão armazenadas
                         $targetFile = $targetDirectory . $player . ".jpg"; // Nome do arquivo será o nome de usuário com extensão jpg
 
+                        
                         //deletar a imagem existente
                         if(file_exists($targetFile)) {
                             $file_to_delete = $targetFile;
