@@ -45,7 +45,7 @@ cadastroUsuario($userName);
         <input type="password" name="confirm_password" value="" class="form-control" required><br>
 
         <label for="profile_image" class="form-label">Imagem de Perfil: </label>
-        <input type="file" name="profile_image" accept="image/*" class="form-control">
+        <input type="file" name="profile_image" accept="image/*" class="form-control"><br>
 
       <?php endif;?>
 

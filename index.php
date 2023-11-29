@@ -1,6 +1,12 @@
 <?php
-        require "nav.php";
-    ?>
+    $cookieName = "semanal";
+    //ve se o cookie já existe para nao modificar o valor dele toda vez que essa pagina é acessada
+    if(!isset($_COOKIE[$cookieName])) {
+        setcookie($cookieName, 0, time() + 86400 * 7, "/"); 
+    }
+    
+    require "nav.php";
+?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -12,7 +18,7 @@
     </head>
     <body>
     <div id="index">
-        <img src="assets\img\Caminhao.png" alt="">
+        <img src="assets\img\Caminhao.png" alt="Voltar">
     <div class="textblock"><p>
         Essa não! Você deixou as portas do caminhão abertas! Voe e resgate as cartas que saíram voando!
 </p>

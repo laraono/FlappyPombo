@@ -1,18 +1,7 @@
 <?php
-        require "nav.php";
-        require_once "funcoes.php";
-
-        if(isset($_POST["ponto"]) && isset($_POST["recorde"])) {
-            insertPontos($userName, $_POST["ponto"], $_POST["recorde"]);
-        }
-
-        if(isset($_POST["ponto"]) && isset($_POST["tempo"])) {
-            inserirPartida($userName, $_POST["ponto"], $_POST["tempo"]);
-        }
-
-        historicoPartidas($userName, true);
-    //    rankingHighScore($userName, "");
-    ?>
+    require "nav.php";
+    require_once "funcoes.php"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,24 +14,25 @@
 
 </head>
 <body>
-<div class="card border border-dark-subtle rounded my-5 mx-auto col-6">
-<div class="card-body my-3">
-    <h2>Nome de usuário: <?php echo $userName; ?></h2>
-
-    <?php
+<div class="p-3 container border border-dark-subtle rounded my-5 mx-auto col-6">
+<div class="row">
+<div class="col-3">
+<?php
     // Construa o caminho da imagem com base no nome de usuário
     $imagePath = "fotos_perfil/" . $userName . ".jpg";
-
+    $width = 150; // largura desejada
+    $height = 150; // altura desejada
     // Verifique se o arquivo da imagem existe antes de exibir
     if (file_exists($imagePath)) {
-      $width = 150; // largura desejada
-      $height = 150; // altura desejada
-echo '<img src="' . $imagePath . '" class="fotoperfil" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';
- } else {
-        echo '<p>Imagem de perfil não encontrada.</p>';
+
+        echo '<img src="' . $imagePath . '" class="fotoperfil rounded-circle" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';
+    } else {
+        echo '<img src="fotos_perfil/default.png" class="fotoperfil rounded-circle" alt="Minha Foto de Perfil" style="width:' . $width . 'px; height:' . $height . 'px;">';
     }
     ?>
-
+</div>
+<div class="col-9">
+    <h2>Nome de usuário: <?php echo $userName; ?></h2>
     <h4><?php if ($liga != NULL): ?>
         Liga: <?php echo $liga; ?>
         </h4>
@@ -52,6 +42,8 @@ echo '<img src="' . $imagePath . '" class="fotoperfil" alt="Minha Foto de Perfil
             <a href="liga.php">Entrar em uma liga</a>
         </h4>
         <?php endif; ?>
+        <h5><a href="editprofile.php">Mudar dados</a></h5>
+</div>
         </div>
 </div>
 
@@ -63,15 +55,21 @@ echo '<img src="' . $imagePath . '" class="fotoperfil" alt="Minha Foto de Perfil
     <div class="row">
         <div class="col">
         <h3  class="text-center my-5">Ranking Semanal</h3>
-        <?php        rankingSemanal("") ?>
+        <?php
+            rankingSemanal("");
+            if($liga) : 
+        ?>
         <h3  class="text-center my-5">Ranking Semanal da liga</h3>
-    <?php       rankingSemanal($liga)     ?>
+        <?php  rankingSemanal($liga); endif;  ?>
         </div>
         <div class="col">
         <h3  class="text-center my-5">Ranking Geral</h3>
-        <?php         rankingGeral(""); ?>
+        <?php
+            rankingGeral("");
+            if($liga) : 
+        ?>
         <h3  class="text-center my-5">Ranking Geral da liga</h3>
-    <?php         rankingGeral($liga); ?>
+        <?php  rankingGeral($liga); endif;  ?>
         </div>
     </div>
 </div>

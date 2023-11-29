@@ -1,9 +1,10 @@
 <?php
-require_once "funcoes.php";
-require "nav.php";
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
-login($userName);
-}
+  require_once "funcoes.php";
+  require "nav.php";
+  if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    login($userName);
+  }
+  
 ?>
 <!DOCTYPE html>
 <html>
